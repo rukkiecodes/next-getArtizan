@@ -29,6 +29,7 @@
           <v-form>
             <v-sheet color="indigo-lighten-5" class="rounded-lg px-4 mb-4">
               <v-text-field
+                v-model="signup.name"
                 label="Name"
                 type="email"
                 variant="plain"
@@ -40,6 +41,7 @@
             </v-sheet>
             <v-sheet color="indigo-lighten-5" class="rounded-lg px-4 mb-4">
               <v-text-field
+                v-model="signup.email"
                 label="Email"
                 type="email"
                 variant="plain"
@@ -51,6 +53,7 @@
             </v-sheet>
             <v-sheet color="indigo-lighten-5" class="rounded-lg px-4 mb-4">
               <v-text-field
+                v-model="signup.password"
                 label="Password"
                 type="password"
                 variant="plain"
@@ -61,7 +64,13 @@
               />
             </v-sheet>
 
-            <v-btn color="indigo-accent-4" class="rounded-lg" block>
+            <v-btn
+              :loading="signup.loading"
+              @click="signup.signupUser"
+              color="indigo-accent-4"
+              class="rounded-lg"
+              block
+            >
               Sign Up
             </v-btn>
           </v-form>
@@ -72,6 +81,10 @@
 </template>
 
 <script setup>
+import { ref } from "vue";
+import { useSignupStore } from "@/store/auth/signup";
+
+const signup = ref(useSignupStore());
 </script>
 
 <style scoped>

@@ -29,6 +29,7 @@
           <v-form>
             <v-sheet color="indigo-lighten-5" class="rounded-lg px-4 mb-4">
               <v-text-field
+                v-model="signin.email"
                 label="Email"
                 type="email"
                 variant="plain"
@@ -40,6 +41,7 @@
             </v-sheet>
             <v-sheet color="indigo-lighten-5" class="rounded-lg px-4 mb-4">
               <v-text-field
+                v-model="signin.password"
                 label="Password"
                 type="password"
                 variant="plain"
@@ -50,8 +52,14 @@
               />
             </v-sheet>
 
-            <v-btn color="indigo-accent-4" class="rounded-lg" block>
-              Sign Up
+            <v-btn
+              @click="signin.signinUser"
+              :loading="signin.loading"
+              color="indigo-accent-4"
+              class="rounded-lg"
+              block
+            >
+              Sign In
             </v-btn>
           </v-form>
         </v-card-text>
@@ -61,6 +69,10 @@
 </template>
 
 <script setup>
+import { ref } from "vue";
+import { useSigninStore } from "@/store/auth/signin";
+
+const signin = ref(useSigninStore());
 </script>
 
 <style scoped>
