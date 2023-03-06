@@ -15,9 +15,9 @@ export const useProfileStore = defineStore('profile', {
         gender: 'Male',
         stateOfResidence: '',
         LGA: '',
-        specialisation: '',
         guarantorName: '',
         guarantorPhone: '',
+        guarantorAddress: '',
         loading: false
     }),
 
@@ -28,6 +28,13 @@ export const useProfileStore = defineStore('profile', {
             // Get profile from real time from firestore
             const unsub = onSnapshot(doc(db, 'user', userData.uid), (doc) => {
                 this.user = doc.data()
+
+                this.gender = doc.get('gender')
+                this.stateOfResidence = doc.get('stateOfResidence')
+                this.LGA = doc.get('LGA')
+                this.guarantorName = doc.get('guarantorName')
+                this.guarantorPhone = doc.get('guarantorPhone')
+                this.guarantorAddress = doc.get('guarantorAddress')
             })
             return unsub
         },
@@ -51,7 +58,7 @@ export const useProfileStore = defineStore('profile', {
                     () => {
                         getDownloadURL(uploadTask.snapshot.ref)
                             .then(downloadURL => {
-                                updateDoc(doc(db, 'artisan', this.user.uid), {
+                                updateDoc(doc(db, 'user', this.user.uid), {
                                     avatar: downloadURL,
                                     avatarLink: uploadTask.snapshot.ref.fullPath
                                 })
@@ -79,13 +86,13 @@ export const useProfileStore = defineStore('profile', {
         async updateProfile() {
             this.loading = true
 
-            await updateDoc(doc(db, 'artisan', this.user.uid), {
+            await updateDoc(doc(db, 'user', this.user.uid), {
                 gender: this.gender,
                 stateOfResidence: this.stateOfResidence,
                 LGA: this.LGA,
-                specialisation: this.specialisation,
                 guarantorName: this.guarantorName,
                 guarantorPhone: this.guarantorPhone,
+                guarantorAddress: this.guarantorAddress,
             })
 
             this.loading = false

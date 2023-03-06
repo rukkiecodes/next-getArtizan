@@ -28,6 +28,13 @@ export const useProfileStore = defineStore('profile', {
             // Get profile from real time from firestore
             const unsub = onSnapshot(doc(db, 'artisan', userData.uid), (doc) => {
                 this.user = doc.data()
+
+                this.gender = doc.get('gender')
+                this.stateOfResidence = doc.get('stateOfResidence')
+                this.LGA = doc.get('LGA')
+                this.specialisation = doc.get('specialisation')
+                this.guarantorName = doc.get('guarantorName')
+                this.guarantorPhone = doc.get('guarantorPhone')
             })
             return unsub
         },
