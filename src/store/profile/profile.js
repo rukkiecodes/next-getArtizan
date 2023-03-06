@@ -4,10 +4,21 @@ import { doc, onSnapshot, updateDoc } from 'firebase/firestore'
 import { defineStore } from 'pinia'
 import { getStorage, ref, uploadBytesResumable, getDownloadURL, deleteObject } from "firebase/storage"
 
+import { useAppStore } from '../app'
+
+const snackbar = useAppStore()
+
 export const useProfileStore = defineStore('profile', {
     state: () => ({
         user: null,
-        file: null
+        file: null,
+        gender: 'Male',
+        stateOfResidence: '',
+        LGA: '',
+        specialisation: '',
+        guarantorName: '',
+        guarantorPhone: '',
+        loading: false
     }),
 
     actions: {
@@ -63,6 +74,25 @@ export const useProfileStore = defineStore('profile', {
                         // Uh-oh, an error occurred!
                     });
             }
+        },
+
+        async updateProfile() {
+            this.loading = true
+
+            await updateDoc(doc(db, 'users', this.user.uid), {
+                gender: this.gender,
+                stateOfResidence: this.stateOfResidence,
+                LGA: this.LGA,
+                specialisation: this.specialisation,
+                guarantorName: this.guarantorName,
+                guarantorPhone: this.guarantorPhone,
+            })
+
+            this.loading = false
+
+            snackbar.snackbar = true
+            snackbar.snackbarText = 'Profile update succesful'
+            snackbar.snackbarColor = 'green'
         }
     }
 })

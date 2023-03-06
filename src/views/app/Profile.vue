@@ -44,24 +44,28 @@
       <v-card-text>
         <v-select
           label="Gender"
+          v-model="profile.gender"
           :items="['Male', 'Female']"
           density="compact"
           variant="underlined"
           color="indigo-accent-4"
         />
         <v-text-field
+          v-model="profile.stateOfResidence"
           label="State of residence"
           density="compact"
           variant="underlined"
           color="indigo-accent-4"
         />
         <v-text-field
+          v-model="profile.LGA"
           label="Local government of residence"
           density="compact"
           variant="underlined"
           color="indigo-accent-4"
         />
         <v-text-field
+          v-model="profile.specialisation"
           label="Area Of specialisation"
           density="compact"
           variant="underlined"
@@ -73,12 +77,14 @@
         >
 
         <v-text-field
+          v-model="profile.guarantorName"
           label="Name"
           density="compact"
           variant="underlined"
           color="indigo-accent-4"
         />
         <v-text-field
+          v-model="profile.guarantorPhone"
           label="Phone number"
           density="compact"
           variant="underlined"
@@ -86,14 +92,20 @@
         />
       </v-card-text>
       <v-card-actions>
-        <v-btn class="bg-indigo" block>Save</v-btn>
+        <v-btn
+          @click="profile.updateProfile"
+          :loading="profile.loading"
+          class="bg-indigo"
+          block
+          >Save</v-btn
+        >
       </v-card-actions>
     </v-card>
   </v-navigation-drawer>
 </template>
 
 <script setup>
-import { ref } from "vue";
+import { ref, onMounted } from "vue";
 import { useProfileStore } from "@/store/profile/profile";
 
 const profile = ref(useProfileStore());
@@ -102,13 +114,17 @@ const clickOnInput = () => {
   document.querySelector("#avatarInput").click();
 };
 
-// console.log({...profile.value.updateAvatar()})
-
-profile.value.updateAvatar();
+onMounted(() => {
+  profile.value.gender = profile.value.user.gender;
+  profile.value.stateOfResidence = profile.value.user.stateOfResidence
+  profile.value.LGA = profile.value.user.LGA
+  profile.value.specialisation = profile.value.user.specialisation
+  profile.value.guarantorName = profile.value.user.guarantorName
+  profile.value.guarantorPhone = profile.value.user.guarantorPhone
+});
 
 const setAvatar = (e) => {
   profile.value.file = e;
   profile.value.updateAvatar();
-  // profile.updateAvatar()
 };
 </script>
