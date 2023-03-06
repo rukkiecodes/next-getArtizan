@@ -13,11 +13,14 @@
 import AppBar from "./AppBar.vue";
 import Drawer from "./Drawer.vue";
 import { useProfileStore } from "@/store/user/profile/profile";
-import { onMounted } from "vue";
+import { useGetBookingStore } from "@/store/user/booking/getBookings";
+import { onMounted, onUpdated, ref } from "vue";
 
-const profile = useProfileStore();
+const profile = ref(useProfileStore());
+const booking = useGetBookingStore();
 
 onMounted(() => {
-  profile.getProfile();
+  profile.value.getProfile();
+  booking.getBookings()
 });
 </script>
