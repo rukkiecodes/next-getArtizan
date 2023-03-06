@@ -4,17 +4,17 @@ import { createRouter, createWebHistory } from 'vue-router'
 const routes = [
   {
     path: '/',
-    component: () => import('@/layouts/auth/Default.vue'),
+    component: () => import('@/layouts/artisan/auth/Default.vue'),
     children: [
       {
         path: '',
         name: 'Signup',
-        component: () => import('@/views/auth/Signup.vue'),
+        component: () => import('@/views/artisan/auth/Signup.vue'),
       },
       {
         path: '/signin',
         name: 'Signin',
-        component: () => import('@/views/auth/Signin.vue'),
+        component: () => import('@/views/artisan/auth/Signin.vue'),
       },
     ],
   },

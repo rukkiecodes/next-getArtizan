@@ -12,7 +12,7 @@
 <script setup>
 import AppBar from "./AppBar.vue";
 import Drawer from "./Drawer.vue";
-import { useProfileStore } from "@/store/profile/profile";
+import { useProfileStore } from "@/store/artisan/profile/profile";
 import { onMounted } from "vue";
 
 const profile = useProfileStore();

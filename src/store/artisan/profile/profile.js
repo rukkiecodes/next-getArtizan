@@ -4,7 +4,7 @@ import { doc, onSnapshot, updateDoc } from 'firebase/firestore'
 import { defineStore } from 'pinia'
 import { getStorage, ref, uploadBytesResumable, getDownloadURL, deleteObject } from "firebase/storage"
 
-import { useAppStore } from '../app'
+import { useAppStore } from '../../app'
 
 const snackbar = useAppStore()
 
@@ -26,7 +26,7 @@ export const useProfileStore = defineStore('profile', {
             const userData = await JSON.parse(localStorage.getItem('getArtizanUserData'))
 
             // Get profile from real time from firestore
-            const unsub = onSnapshot(doc(db, 'users', userData.uid), (doc) => {
+            const unsub = onSnapshot(doc(db, 'artisan', userData.uid), (doc) => {
                 this.user = doc.data()
             })
             return unsub
@@ -51,7 +51,7 @@ export const useProfileStore = defineStore('profile', {
                     () => {
                         getDownloadURL(uploadTask.snapshot.ref)
                             .then(downloadURL => {
-                                updateDoc(doc(db, 'users', this.user.uid), {
+                                updateDoc(doc(db, 'artisan', this.user.uid), {
                                     avatar: downloadURL,
                                     avatarLink: uploadTask.snapshot.ref.fullPath
                                 })
@@ -79,7 +79,7 @@ export const useProfileStore = defineStore('profile', {
         async updateProfile() {
             this.loading = true
 
-            await updateDoc(doc(db, 'users', this.user.uid), {
+            await updateDoc(doc(db, 'artisan', this.user.uid), {
                 gender: this.gender,
                 stateOfResidence: this.stateOfResidence,
                 LGA: this.LGA,

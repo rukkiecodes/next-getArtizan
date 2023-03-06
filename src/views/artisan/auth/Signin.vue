@@ -70,7 +70,7 @@
 
 <script setup>
 import { ref } from "vue";
-import { useSigninStore } from "@/store/auth/signin";
+import { useSigninStore } from "@/store/artisan/auth/signin";
 
 const signin = ref(useSigninStore());
 </script>

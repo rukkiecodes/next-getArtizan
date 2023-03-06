@@ -3,7 +3,7 @@ import { auth, db } from '@/plugins/firebase'
 import { createUserWithEmailAndPassword } from 'firebase/auth'
 import { defineStore } from 'pinia'
 
-import { useAppStore } from '../app'
+import { useAppStore } from '../../app'
 
 import router from '@/router'
 import { doc, serverTimestamp, setDoc } from 'firebase/firestore'
@@ -30,7 +30,7 @@ export const useSignupStore = defineStore('signup', {
           .then(async user => {
             localStorage.getArtizanUserData = JSON.stringify(user.user)
 
-            await setDoc(doc(db, 'users', user.user.uid), {
+            await setDoc(doc(db, 'artisan', user.user.uid), {
               name: this.name,
               email: this.email,
               uid: user.user.uid,

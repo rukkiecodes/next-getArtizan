@@ -82,7 +82,7 @@
 
 <script setup>
 import { ref } from "vue";
-import { useSignupStore } from "@/store/auth/signup";
+import { useSignupStore } from "@/store/artisan/auth/signup";
 
 const signup = ref(useSignupStore());
 </script>

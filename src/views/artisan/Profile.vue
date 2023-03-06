@@ -165,7 +165,7 @@
 
 <script setup>
 import { ref, onMounted, computed } from "vue";
-import { useProfileStore } from "@/store/profile/profile";
+import { useProfileStore } from "@/store/artisan/profile/profile";
 import { useDisplay } from "vuetify";
 
 const { name } = useDisplay();

@@ -3,7 +3,7 @@ import { auth, db } from '@/plugins/firebase'
 import { signInWithEmailAndPassword } from 'firebase/auth'
 import { defineStore } from 'pinia'
 
-import { useAppStore } from '../app'
+import { useAppStore } from '../../app'
 
 import router from '@/router'
 
@@ -26,7 +26,7 @@ export const useSigninStore = defineStore('signin', {
         this.loading = true
         signInWithEmailAndPassword(auth, this.email, this.password)
           .then(async user => {
-            localStorage.getArtizanUserData = JSON.stringify(user.user)
+            localStorage.getArtizanArtisanData = JSON.stringify(user.user)
 
             this.loading = false
             router.push('artisan/overview')

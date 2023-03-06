@@ -15,7 +15,7 @@
 </template>
 
 <script setup>
-import { useProfileStore } from "@/store/profile/profile";
+import { useProfileStore } from "@/store/artisan/profile/profile";
 
 const profile = useProfileStore();
 </script>
