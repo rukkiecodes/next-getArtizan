@@ -8,7 +8,7 @@
     <v-container class="mainSection d-flex justify-space-between">
       <v-card width="400" max-width="100%" flat color="transparent">
         <p class="text-h4 font-weight-bold text-grey-darken-4">
-          Sign Up and becomen an artizan
+          Sign up and become an artizan
         </p>
         <span class="text-body-1 font-weight-regular text-grey-darken-4">
           If you already have an account You can
