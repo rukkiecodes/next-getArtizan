@@ -2,7 +2,7 @@
   <v-app-bar order="1" flat color="indigo-lighten-5">
     <v-spacer />
 
-    <v-chip class="bg-indigo-lighten-5 pl-1">
+    <v-chip class="pl-1">
       <v-avatar class="mr-1">
         <v-img v-if="profile.user?.avatar" :src="profile.user?.avatar" cover />
         <v-icon v-else color="grey-darken-4">mdi-account</v-icon>
