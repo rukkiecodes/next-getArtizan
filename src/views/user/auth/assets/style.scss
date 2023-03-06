@@ -1,0 +1,147 @@
+.auth {
+    background: linear-gradient(90deg, #e8efff, #ffffff);
+    position: relative;
+    overflow: hidden;
+}
+
+.splat {
+    position: absolute;
+    left: 50%;
+    top: 50%;
+    transform: translate(-50%, -50%);
+    background: #9ddee549;
+    width: 350px;
+    height: 350px;
+    border-radius: 30%;
+
+    &:after {
+        content: '';
+        width: 100vw;
+        height: 100vh;
+        position: absolute;
+        left: 50%;
+        top: 50%;
+        transform: translate(-50%, -50%);
+        backdrop-filter: blur(16px) saturate(180%);
+        border-radius: 12px;
+        border: none;
+    }
+}
+
+.takeOffCOntainer {
+    position: absolute;
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%, -50%);
+    width: 500px;
+    max-width: 95%;
+    animation: takeOffCOntainer 20s ease-in-out 1s infinite alternate;
+}
+
+.cash {
+    width: 12%;
+    position: absolute;
+    bottom: 20px;
+    left: 30px;
+    animation: bounce 3s infinite alternate;
+}
+
+.hand {
+    width: 25%;
+    position: absolute;
+    bottom: -20px;
+    right: 50px;
+    animation: bounce 3s infinite alternate;
+}
+
+.check {
+    width: 20%;
+    position: absolute;
+    right: 2%;
+    top: 50px;
+    animation: bounceX 3s infinite alternate;
+}
+
+.mainSection {
+    position: absolute;
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%, -50%);
+    z-index: 1;
+    margin-inline: auto;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    flex-wrap: wrap;
+}
+
+.glass {
+    background: rgba(255, 255, 255, 0.25);
+    backdrop-filter: blur(20px);
+}
+
+@keyframes takeOffCOntainer {
+    0% {
+        transform: translate(-50%, -50%);
+    }
+
+    10% {
+        transform: translate(-55%, -50%);
+    }
+
+    20% {
+        transform: translate(-50%, -55%);
+    }
+
+    30% {
+        transform: translate(-55%, -40%);
+    }
+
+    40% {
+        transform: translate(-53%, -45%);
+    }
+
+    50% {
+        transform: translate(-58%, -48%);
+    }
+
+    60% {
+        transform: translate(-50%, -48%);
+    }
+
+    70% {
+        transform: translate(-48%, -60%);
+    }
+
+    80% {
+        transform: translate(-43%, -53%);
+    }
+
+    90% {
+        transform: translate(-56%, -53%);
+    }
+
+    100% {
+        transform: translate(-50%, -50%);
+    }
+}
+
+@keyframes bounceX {
+    from {
+        transform: translateX(0%);
+    }
+
+    to {
+        transform: translateX(-5%);
+    }
+}
+
+@keyframes bounce {
+    from {
+        transform: translateY(0%);
+    }
+
+    to {
+        transform: translateY(-5%);
+    }
+}

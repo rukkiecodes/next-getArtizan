@@ -35,7 +35,45 @@ const routes = [
         component: () => import('@/views/artisan/Profile.vue'),
       },
     ]
-  }
+  },
+  {
+    path: '/customer',
+    component: () => import('@/layouts/user/auth/Default.vue'),
+    children: [
+      {
+        path: '',
+        name: 'customer.Signup',
+        component: () => import('@/views/user/auth/Signup.vue'),
+      },
+      {
+        path: '/signin',
+        name: 'customer.Signin',
+        component: () => import('@/views/user/auth/Signin.vue'),
+      },
+    ],
+  },
+  {
+    path: '/dashboard',
+    component: () => import('@/layouts/user/Default.vue'),
+    children: [
+      {
+        path: '',
+        component: () => import('@/views/user/App.vue'),
+      },
+      {
+        path: 'overview',
+        component: () => import('@/views/user/App.vue'),
+      },
+      {
+        path: 'bookings',
+        component: () => import('@/views/user/Bookings.vue'),
+      },
+      {
+        path: 'profile',
+        component: () => import('@/views/user/Profile.vue'),
+      },
+    ]
+  },
 ]
 
 const router = createRouter({
