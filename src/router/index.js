@@ -19,20 +19,20 @@ const routes = [
     ],
   },
   {
-    path: '/app',
-    component: () => import('@/layouts/app/Default.vue'),
+    path: '/artisan',
+    component: () => import('@/layouts/artisan/Default.vue'),
     children: [
       {
         path: '',
-        component: () => import('@/views/app/App.vue'),
+        component: () => import('@/views/artisan/App.vue'),
       },
       {
         path: 'overview',
-        component: () => import('@/views/app/App.vue'),
+        component: () => import('@/views/artisan/App.vue'),
       },
       {
         path: 'profile',
-        component: () => import('@/views/app/Profile.vue'),
+        component: () => import('@/views/artisan/Profile.vue'),
       },
     ]
   }

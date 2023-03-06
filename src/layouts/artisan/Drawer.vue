@@ -24,12 +24,12 @@ const routes = [
   {
     title: "Overview",
     icon: "mdi-view-dashboard",
-    to: "/app/overview",
+    to: "/artisan/overview",
   },
   {
     title: "Profile",
     icon: "mdi-account",
-    to: "/app/profile",
+    to: "/artisan/profile",
   },
 ];
 </script>
