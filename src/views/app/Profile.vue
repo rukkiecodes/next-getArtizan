@@ -1,6 +1,12 @@
 <template>
   <v-container>
-    <v-card flat color="transparent">
+    <v-card
+      flat
+      color="transparent"
+      width="400"
+      max-width="100%"
+      class="mx-auto"
+    >
       <v-card-text class="text-center">
         <v-avatar color="indigo" size="80">
           <v-img
@@ -11,16 +17,69 @@
           <v-icon v-else size="30">mdi-account</v-icon>
         </v-avatar>
       </v-card-text>
+      <v-card-text class="text-center">
+        <v-card-title class="text-h5 text-grey-darken-4">
+          {{ profile.user?.name }}
+        </v-card-title>
+        <v-card-subtitle class="text-body-2 text-grey-darken-4">
+          {{ profile.user?.email }}
+        </v-card-subtitle>
+      </v-card-text>
+      <v-card-text class="text-center">
+        <v-card-subtitle class="px-0 text-caption">Gender</v-card-subtitle>
+        {{ profile.user?.gender }}
+      </v-card-text>
+      <v-card-text class="text-center">
+        <v-card-subtitle class="px-0 text-caption"
+          >State Of Residence</v-card-subtitle
+        >
+        {{ profile.user?.stateOfResidence }}
+      </v-card-text>
+      <v-card-text class="text-center">
+        <v-card-subtitle class="px-0 text-caption"
+          >Local Government Area</v-card-subtitle
+        >
+        {{ profile.user?.LGA }}
+      </v-card-text>
+      <v-card-text class="text-center">
+        <v-card-subtitle class="px-0 text-caption"
+          >Area of specialisation</v-card-subtitle
+        >
+        {{ profile.user?.specialisation }}
+      </v-card-text>
+      <v-card-text class="text-center">
+        <v-card-subtitle class="px-0 text-caption"
+          >Guarantor Name</v-card-subtitle
+        >
+        {{ profile.user?.guarantorName }}
+      </v-card-text>
+      <v-card-text class="text-center">
+        <v-card-subtitle class="px-0 text-caption"
+          >Guarantor Phone</v-card-subtitle
+        >
+        {{ profile.user?.guarantorPhone }}
+      </v-card-text>
+
+      <v-card-actions>
+        <v-btn
+          block
+          @click="drawer = true"
+          class="ma-4 text-caption rounded-lg bg-indigo mx-auto hidden-lg-and-up"
+        >
+          Edit Profile
+        </v-btn>
+      </v-card-actions>
     </v-card>
   </v-container>
 
   <v-navigation-drawer
+    v-model="drawer"
     location="right"
     width="350"
     border="0"
     color="indigo-lighten-5"
   >
-    <v-card class="ma-4 rounded-lg" elevation="5">
+    <v-card class="ma-4 rounded-lg" :elevation="flat" :color="color">
       <v-card-title class="text-grey-darken-4 text-body-1"
         >Edit your profile</v-card-title
       >
@@ -105,26 +164,68 @@
 </template>
 
 <script setup>
-import { ref, onMounted } from "vue";
+import { ref, onMounted, computed } from "vue";
 import { useProfileStore } from "@/store/profile/profile";
+import { useDisplay } from "vuetify";
+
+const { name } = useDisplay();
 
 const profile = ref(useProfileStore());
+const drawer = ref(true);
 
 const clickOnInput = () => {
   document.querySelector("#avatarInput").click();
 };
 
 onMounted(() => {
-  profile.value.gender = profile.value.user.gender;
-  profile.value.stateOfResidence = profile.value.user.stateOfResidence
-  profile.value.LGA = profile.value.user.LGA
-  profile.value.specialisation = profile.value.user.specialisation
-  profile.value.guarantorName = profile.value.user.guarantorName
-  profile.value.guarantorPhone = profile.value.user.guarantorPhone
+  profile.value.gender = profile.value.user?.gender;
+  profile.value.stateOfResidence = profile.value.user?.stateOfResidence;
+  profile.value.LGA = profile.value.user?.LGA;
+  profile.value.specialisation = profile.value.user?.specialisation;
+  profile.value.guarantorName = profile.value.user?.guarantorName;
+  profile.value.guarantorPhone = profile.value.user?.guarantorPhone;
 });
 
 const setAvatar = (e) => {
   profile.value.file = e;
   profile.value.updateAvatar();
 };
+
+const flat = computed(() => {
+  // name is reactive and
+  // must use .value
+  switch (name.value) {
+    case "xs":
+      return 0;
+    case "sm":
+      return 0;
+    case "md":
+      return 0;
+    case "lg":
+      return 5;
+    case "xl":
+      return 5;
+  }
+
+  return undefined;
+});
+
+const color = computed(() => {
+  // name is reactive and
+  // must use .value
+  switch (name.value) {
+    case "xs":
+      return 'indigo-lighten-5';
+    case "sm":
+      return 'indigo-lighten-5';
+    case "md":
+      return 'indigo-lighten-5';
+    case "lg":
+      return 'white';
+    case "xl":
+      return 'white';
+  }
+
+  return undefined;
+});
 </script>
