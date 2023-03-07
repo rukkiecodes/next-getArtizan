@@ -1,10 +1,13 @@
 // Utilities
-import { db } from '@/plugins/firebase'
+import { auth, db } from '@/plugins/firebase'
 import { doc, onSnapshot, updateDoc } from 'firebase/firestore'
 import { defineStore } from 'pinia'
 import { getStorage, ref, uploadBytesResumable, getDownloadURL, deleteObject } from "firebase/storage"
 
 import { useAppStore } from '../../app'
+import { signOut } from 'firebase/auth'
+
+import router from '@/router'
 
 const snackbar = useAppStore()
 
@@ -100,6 +103,12 @@ export const useProfileStore = defineStore('profile', {
             snackbar.snackbar = true
             snackbar.snackbarText = 'Profile update succesful'
             snackbar.snackbarColor = 'green'
+        },
+
+        signoutUser() {
+            signOut(auth)
+            localStorage.removeItem('getArtizanArtisanData')
+            router.push('/artisan')
         }
     }
 })

@@ -69,6 +69,10 @@ const routes = [
         component: () => import('@/views/artisan/App.vue'),
       },
       {
+        path: 'bookings',
+        component: () => import('@/views/artisan/Bookings.vue'),
+      },
+      {
         path: 'profile',
         component: () => import('@/views/artisan/Profile.vue'),
       },
