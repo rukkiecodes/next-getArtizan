@@ -1,13 +1,15 @@
 <template>
-  <v-sheet height="100%" color="transparent" class="d-flex"
+  <v-sheet height="100%" color="transparent" class="d-flex mb-16"
     :class="bookings.bookings.length <= 0 ? 'd-flex align-center' : ''">
     <v-container :class="bookings.bookings.length <= 0 ? 'd-flex justify-center' : ''">
       <v-row v-if="bookings.bookings.length > 0">
         <v-col v-for="booking in bookings.bookings" :key="booking.id" cols="12" sm="4" md="3">
           <v-card>
             <v-card-text class="text-center">
-              <v-avatar size="120">
-                <v-img src="../user/auth/assets/images/takeOff.svg" cover />
+              <v-avatar size="150">
+                <v-img
+                  :src="booking.photo != null ? booking.photo : 'https://res.cloudinary.com/rukkiecodes/image/upload/v1678145143/takeOff_p3xuej.svg'"
+                  cover />
               </v-avatar>
             </v-card-text>
             <v-card-title>{{ booking?.title }}</v-card-title>
@@ -55,7 +57,7 @@
               <v-list-item density="compact">
                 <v-list-item-subtitle class="text-caption">Created on</v-list-item-subtitle>
                 <v-list-item-title class="text-grey-darken-4 text-body-2 font-weight-bold">{{
-                  booking?.createdAt.toDate().toDateString()
+                  booking?.createdAt?.toDate().toDateString()
                 }}</v-list-item-title>
               </v-list-item>
             </v-card-text>
@@ -106,6 +108,8 @@
           </v-btn>
         </v-toolbar>
         <v-card-text>
+          <v-file-input @change="setPicture" label="Add a Picture (Optional)" density="comfortable" variant="underlined"
+            color="indigo" />
           <v-text-field v-model="bookingsStore.title" label="Title" density="comfortable" variant="underlined"
             color="indigo" />
           <v-text-field v-model="bookingsStore.date" label="Date" density="comfortable" variant="underlined"
@@ -151,4 +155,8 @@ const setCurrnetBooking = (prop) => {
   currentBooking.value.dialog = true;
   currentBooking.value.body = prop.description;
 }
+
+const setPicture = (e) => {
+  bookingsStore.value.photo = e;
+};
 </script>
