@@ -30,6 +30,10 @@ const routes = [
         component: () => import('@/views/user/App.vue'),
       },
       {
+        path: 'artizan',
+        component: () => import('@/views/user/Artizan.vue'),
+      },
+      {
         path: 'bookings',
         component: () => import('@/views/user/Bookings.vue'),
       },

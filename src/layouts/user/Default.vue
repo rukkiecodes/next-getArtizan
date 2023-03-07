@@ -15,11 +15,13 @@ import Drawer from "./Drawer.vue";
 import { useProfileStore } from "@/store/user/profile/profile";
 import { useGetBookingStore } from "@/store/user/booking/getBookings";
 import { useuserOverviewStore } from "@/store/user/overview";
+import { useArtizansStore } from "@/store/user/artizans";
 import { onMounted, ref } from "vue";
 
 const profile = ref(useProfileStore());
 const booking = useGetBookingStore();
 const count = useuserOverviewStore();
+const artizan = useArtizansStore()
 
 onMounted(() => {
   profile.value.getProfile();
@@ -27,5 +29,6 @@ onMounted(() => {
   count.countPendingStates();
   count.countApprovedStates();
   count.countCompletedStates();
+  artizan.getArtizans()
 });
 </script>

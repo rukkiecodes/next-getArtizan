@@ -18,6 +18,7 @@ export const useProfileStore = defineStore('profile', {
         gender: 'Male',
         stateOfResidence: '',
         LGA: '',
+        phone: '',
         guarantorName: '',
         guarantorPhone: '',
         guarantorAddress: '',
@@ -35,6 +36,7 @@ export const useProfileStore = defineStore('profile', {
                 this.gender = doc.get('gender')
                 this.stateOfResidence = doc.get('stateOfResidence')
                 this.LGA = doc.get('LGA')
+                this.phone = doc.get('phone')
                 this.guarantorName = doc.get('guarantorName')
                 this.guarantorPhone = doc.get('guarantorPhone')
                 this.guarantorAddress = doc.get('guarantorAddress')
@@ -93,6 +95,7 @@ export const useProfileStore = defineStore('profile', {
                 gender: this.gender,
                 stateOfResidence: this.stateOfResidence,
                 LGA: this.LGA,
+                phone: this.phone,
                 guarantorName: this.guarantorName,
                 guarantorPhone: this.guarantorPhone,
                 guarantorAddress: this.guarantorAddress,
