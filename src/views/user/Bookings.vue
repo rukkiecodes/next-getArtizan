@@ -8,7 +8,7 @@
             <v-card-text class="text-center">
               <v-avatar size="150">
                 <v-img
-                  :src="booking.photo != null ? booking.photo : 'https://res.cloudinary.com/rukkiecodes/image/upload/v1678145143/takeOff_p3xuej.svg'"
+                  :src="booking?.photo != null ? booking?.photo : 'https://res.cloudinary.com/rukkiecodes/image/upload/v1678145143/takeOff_p3xuej.svg'"
                   cover />
               </v-avatar>
             </v-card-text>
@@ -22,7 +22,9 @@
               </v-chip>
               <v-chip
                 :color="booking?.status == 'pending' ? 'amber' : booking?.status == 'approved' ? 'indigo' : 'green'">
-                <v-icon color="amber-darken-2" class="mr-1">mdi-hand-coin</v-icon>
+                <v-icon
+                  :color="booking?.status == 'pending' ? 'amber-darken-2' : booking?.status == 'approved' ? 'indigo-darken-2' : 'green-darken-2'"
+                  class="mr-1">mdi-hand-coin</v-icon>
                 <span class="font-weight-bold"
                   :class="booking?.status == 'pending' ? 'text-amber-darken-2' : booking?.status == 'approved' ? 'text-indigo-darken-2' : 'text-green-darken-2'">{{
                     booking?.budget }}</span>
@@ -42,11 +44,6 @@
               <v-list-item density="compact">
                 <v-list-item-subtitle class="text-caption">Date</v-list-item-subtitle>
                 <v-list-item-title class="text-grey-darken-4 text-body-2 font-weight-bold">{{ booking?.date
-                }}</v-list-item-title>
-              </v-list-item>
-              <v-list-item density="compact">
-                <v-list-item-subtitle class="text-caption">Time</v-list-item-subtitle>
-                <v-list-item-title class="text-grey-darken-4 text-body-2 font-weight-bold">{{ booking?.time
                 }}</v-list-item-title>
               </v-list-item>
               <v-list-item density="compact">

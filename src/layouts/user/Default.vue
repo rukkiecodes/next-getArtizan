@@ -14,13 +14,18 @@ import AppBar from "./AppBar.vue";
 import Drawer from "./Drawer.vue";
 import { useProfileStore } from "@/store/user/profile/profile";
 import { useGetBookingStore } from "@/store/user/booking/getBookings";
-import { onMounted, onUpdated, ref } from "vue";
+import { useuserOverviewStore } from "@/store/user/overview";
+import { onMounted, ref } from "vue";
 
 const profile = ref(useProfileStore());
 const booking = useGetBookingStore();
+const count = useuserOverviewStore();
 
 onMounted(() => {
   profile.value.getProfile();
   booking.getBookings()
+  count.countPendingStates();
+  count.countApprovedStates();
+  count.countCompletedStates();
 });
 </script>

@@ -1,5 +1,8 @@
 <template>
   <v-app-bar order="1" flat color="indigo-lighten-5">
+    <v-app-bar-title>
+      <v-img src="@/assets/logo.png" width="120" />
+    </v-app-bar-title>
     <v-spacer />
 
     <v-chip class="bg-indigo-lighten-5 pl-1">
