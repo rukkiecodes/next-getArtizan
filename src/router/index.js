@@ -65,10 +65,6 @@ const routes = [
     component: () => import('@/layouts/artisan/Default.vue'),
     children: [
       {
-        path: 'overview',
-        component: () => import('@/views/artisan/App.vue'),
-      },
-      {
         path: 'bookings',
         component: () => import('@/views/artisan/Bookings.vue'),
       },
