@@ -10,7 +10,7 @@ import { doc, serverTimestamp, setDoc } from 'firebase/firestore'
 
 const snackbar = useAppStore()
 
-export const useSignupStore = defineStore('signup', {
+export const useUserSignupStore = defineStore('userSignup', {
   state: () => ({
     name: '',
     email: '',
@@ -28,7 +28,7 @@ export const useSignupStore = defineStore('signup', {
         this.loading = true
         createUserWithEmailAndPassword(auth, this.email, this.password)
           .then(async user => {
-            localStorage.getArtizanUserData = JSON.stringify(user.user)
+            localStorage.getArtizanArtisanData = JSON.stringify(user.user)
 
             await setDoc(doc(db, 'user', user.user.uid), {
               name: this.name,

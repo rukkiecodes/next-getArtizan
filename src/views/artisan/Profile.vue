@@ -1,19 +1,9 @@
 <template>
   <v-container>
-    <v-card
-      flat
-      color="transparent"
-      width="400"
-      max-width="100%"
-      class="mx-auto"
-    >
+    <v-card flat color="transparent" width="400" max-width="100%" class="mx-auto">
       <v-card-text class="text-center">
         <v-avatar color="indigo" size="80">
-          <v-img
-            v-if="profile.user?.avatar"
-            :src="profile.user?.avatar"
-            cover
-          />
+          <v-img v-if="profile.user?.avatar" :src="profile.user?.avatar" cover />
           <v-icon v-else size="30">mdi-account</v-icon>
         </v-avatar>
       </v-card-text>
@@ -30,134 +20,64 @@
         {{ profile.user?.gender }}
       </v-card-text>
       <v-card-text class="text-center">
-        <v-card-subtitle class="px-0 text-caption"
-          >State Of Residence</v-card-subtitle
-        >
+        <v-card-subtitle class="px-0 text-caption">State Of Residence</v-card-subtitle>
         {{ profile.user?.stateOfResidence }}
       </v-card-text>
       <v-card-text class="text-center">
-        <v-card-subtitle class="px-0 text-caption"
-          >Local Government Area</v-card-subtitle
-        >
+        <v-card-subtitle class="px-0 text-caption">Local Government Area</v-card-subtitle>
         {{ profile.user?.LGA }}
       </v-card-text>
       <v-card-text class="text-center">
-        <v-card-subtitle class="px-0 text-caption"
-          >Area of specialisation</v-card-subtitle
-        >
+        <v-card-subtitle class="px-0 text-caption">Area of specialisation</v-card-subtitle>
         {{ profile.user?.specialisation }}
       </v-card-text>
       <v-card-text class="text-center">
-        <v-card-subtitle class="px-0 text-caption"
-          >Guarantor Name</v-card-subtitle
-        >
+        <v-card-subtitle class="px-0 text-caption">Guarantor Name</v-card-subtitle>
         {{ profile.user?.guarantorName }}
       </v-card-text>
       <v-card-text class="text-center">
-        <v-card-subtitle class="px-0 text-caption"
-          >Guarantor Phone</v-card-subtitle
-        >
+        <v-card-subtitle class="px-0 text-caption">Guarantor Phone</v-card-subtitle>
         {{ profile.user?.guarantorPhone }}
       </v-card-text>
 
       <v-card-actions>
-        <v-btn
-          block
-          @click="drawer = true"
-          class="ma-4 text-caption rounded-lg bg-indigo mx-auto hidden-lg-and-up"
-        >
+        <v-btn block @click="drawer = true" class="ma-4 text-caption rounded-lg bg-indigo mx-auto hidden-lg-and-up">
           Edit Profile
         </v-btn>
       </v-card-actions>
     </v-card>
   </v-container>
 
-  <v-navigation-drawer
-    v-model="drawer"
-    location="right"
-    width="350"
-    border="0"
-    color="indigo-lighten-5"
-  >
+  <v-navigation-drawer v-model="drawer" location="right" width="350" border="0" color="indigo-lighten-5">
     <v-card class="ma-4 rounded-lg" :elevation="flat" :color="color">
-      <v-card-title class="text-grey-darken-4 text-body-1"
-        >Edit your profile</v-card-title
-      >
+      <v-card-title class="text-grey-darken-4 text-body-1">Edit your profile</v-card-title>
       <v-card-text class="text-center my-4">
         <v-avatar @click="clickOnInput" color="indigo" size="80">
-          <v-img
-            v-if="profile.user?.avatar"
-            :src="profile.user?.avatar"
-            cover
-          />
+          <v-img v-if="profile.user?.avatar" :src="profile.user?.avatar" cover />
           <v-icon v-else size="30">mdi-account</v-icon>
         </v-avatar>
       </v-card-text>
-      <input
-        type="file"
-        id="avatarInput"
-        style="display: none"
-        @change="setAvatar"
-      />
+      <input type="file" id="avatarInput" style="display: none" @change="setAvatar" />
 
       <v-card-text>
-        <v-select
-          label="Gender"
-          v-model="profile.gender"
-          :items="['Male', 'Female']"
-          density="compact"
-          variant="underlined"
-          color="indigo-accent-4"
-        />
-        <v-text-field
-          v-model="profile.stateOfResidence"
-          label="State of residence"
-          density="compact"
-          variant="underlined"
-          color="indigo-accent-4"
-        />
-        <v-text-field
-          v-model="profile.LGA"
-          label="Local government of residence"
-          density="compact"
-          variant="underlined"
-          color="indigo-accent-4"
-        />
-        <v-text-field
-          v-model="profile.specialisation"
-          label="Area Of specialisation"
-          density="compact"
-          variant="underlined"
-          color="indigo-accent-4"
-        />
+        <v-select label="Gender" v-model="profile.gender" :items="['Male', 'Female']" density="compact"
+          variant="underlined" color="indigo-accent-4" />
+        <v-text-field v-model="profile.stateOfResidence" label="State of residence" density="compact" variant="underlined"
+          color="indigo-accent-4" />
+        <v-text-field v-model="profile.LGA" label="Local government of residence" density="compact" variant="underlined"
+          color="indigo-accent-4" />
+        <v-select v-model="profile.specialisation" :items="app.categories" label="Area Of specialisation"
+          density="compact" variant="underlined" color="indigo-accent-4" />
 
-        <v-card-subtitle class="mb-2 mt-5 pl-0"
-          >Guarantor Details</v-card-subtitle
-        >
+        <v-card-subtitle class="mb-2 mt-5 pl-0">Guarantor Details</v-card-subtitle>
 
-        <v-text-field
-          v-model="profile.guarantorName"
-          label="Name"
-          density="compact"
-          variant="underlined"
-          color="indigo-accent-4"
-        />
-        <v-text-field
-          v-model="profile.guarantorPhone"
-          label="Phone number"
-          density="compact"
-          variant="underlined"
-          color="indigo-accent-4"
-        />
+        <v-text-field v-model="profile.guarantorName" label="Name" density="compact" variant="underlined"
+          color="indigo-accent-4" />
+        <v-text-field v-model="profile.guarantorPhone" label="Phone number" density="compact" variant="underlined"
+          color="indigo-accent-4" />
       </v-card-text>
       <v-card-actions>
-        <v-btn
-          @click="profile.updateProfile"
-          :loading="profile.loading"
-          class="bg-indigo"
-          block
-          >Save</v-btn
-        >
+        <v-btn @click="profile.updateProfile" :loading="profile.loading" class="bg-indigo" block>Save</v-btn>
       </v-card-actions>
     </v-card>
   </v-navigation-drawer>
@@ -166,11 +86,13 @@
 <script setup>
 import { ref, onMounted, computed } from "vue";
 import { useProfileStore } from "@/store/artisan/profile/profile";
+import { useAppStore } from "@/store/app";
 import { useDisplay } from "vuetify";
 
 const { name } = useDisplay();
 
 const profile = ref(useProfileStore());
+const app = ref(useAppStore());
 const drawer = ref(true);
 
 const clickOnInput = () => {

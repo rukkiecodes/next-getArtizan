@@ -28,7 +28,7 @@ export const useSignupStore = defineStore('signup', {
         this.loading = true
         createUserWithEmailAndPassword(auth, this.email, this.password)
           .then(async user => {
-            localStorage.getArtizanUserData = JSON.stringify(user.user)
+            localStorage.getArtizanArtisanData = JSON.stringify(user.user)
 
             await setDoc(doc(db, 'artisan', user.user.uid), {
               name: this.name,
@@ -37,7 +37,7 @@ export const useSignupStore = defineStore('signup', {
               createdAt: serverTimestamp()
             })
             this.loading = false
-            router.push('artisan/overview')
+            router.push('/artisanDashboard/overview')
           })
           .catch((error) => {
             console.log(error)

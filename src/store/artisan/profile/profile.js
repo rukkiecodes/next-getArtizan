@@ -1,10 +1,13 @@
 // Utilities
-import { db } from '@/plugins/firebase'
+import { auth, db } from '@/plugins/firebase'
 import { doc, onSnapshot, updateDoc } from 'firebase/firestore'
 import { defineStore } from 'pinia'
 import { getStorage, ref, uploadBytesResumable, getDownloadURL, deleteObject } from "firebase/storage"
 
 import { useAppStore } from '../../app'
+import { signOut } from 'firebase/auth'
+
+import router from '@/router'
 
 const snackbar = useAppStore()
 
@@ -23,7 +26,7 @@ export const useProfileStore = defineStore('profile', {
 
     actions: {
         async getProfile() {
-            const userData = await JSON.parse(localStorage.getItem('getArtizanUserData'))
+            const userData = await JSON.parse(localStorage.getItem('getArtizanArtisanData'))
 
             // Get profile from real time from firestore
             const unsub = onSnapshot(doc(db, 'artisan', userData.uid), (doc) => {
@@ -100,6 +103,12 @@ export const useProfileStore = defineStore('profile', {
             snackbar.snackbar = true
             snackbar.snackbarText = 'Profile update succesful'
             snackbar.snackbarColor = 'green'
+        },
+
+        signoutUser() {
+            signOut(auth)
+            localStorage.removeItem('getArtizanArtisanData')
+            router.push('/artisan')
         }
     }
 })

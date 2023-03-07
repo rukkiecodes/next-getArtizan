@@ -2,52 +2,17 @@
 import { createRouter, createWebHistory } from 'vue-router'
 
 const routes = [
+  // User Routes
   {
     path: '/',
-    component: () => import('@/layouts/artisan/auth/Default.vue'),
-    children: [
-      {
-        path: '',
-        name: 'Signup',
-        component: () => import('@/views/artisan/auth/Signup.vue'),
-      },
-      {
-        path: '/signin',
-        name: 'Signin',
-        component: () => import('@/views/artisan/auth/Signin.vue'),
-      },
-    ],
-  },
-  {
-    path: '/artisan',
-    component: () => import('@/layouts/artisan/Default.vue'),
-    children: [
-      {
-        path: '',
-        component: () => import('@/views/artisan/App.vue'),
-      },
-      {
-        path: 'overview',
-        component: () => import('@/views/artisan/App.vue'),
-      },
-      {
-        path: 'profile',
-        component: () => import('@/views/artisan/Profile.vue'),
-      },
-    ]
-  },
-  {
-    path: '/customer',
     component: () => import('@/layouts/user/auth/Default.vue'),
     children: [
       {
         path: '',
-        name: 'customer.Signup',
         component: () => import('@/views/user/auth/Signup.vue'),
       },
       {
-        path: '/signin',
-        name: 'customer.Signin',
+        path: 'signin',
         component: () => import('@/views/user/auth/Signin.vue'),
       },
     ],
@@ -74,6 +39,45 @@ const routes = [
       },
     ]
   },
+  // Artisan Routes
+  {
+    path: '/artisan',
+    component: () => import('@/layouts/artisan/auth/Default.vue'),
+    children: [
+      {
+        path: '',
+        name: 'Signup',
+        component: () => import('@/views/artisan/auth/Signup.vue'),
+      },
+      {
+        path: 'signin',
+        name: 'Signin',
+        component: () => import('@/views/artisan/auth/Signin.vue'),
+      },
+    ],
+  },
+  {
+    path: '/artisanDashboard',
+    component: () => import('@/layouts/artisan/Default.vue'),
+    children: [
+      {
+        path: '',
+        component: () => import('@/views/artisan/App.vue'),
+      },
+      {
+        path: 'overview',
+        component: () => import('@/views/artisan/App.vue'),
+      },
+      {
+        path: 'bookings',
+        component: () => import('@/views/artisan/Bookings.vue'),
+      },
+      {
+        path: 'profile',
+        component: () => import('@/views/artisan/Profile.vue'),
+      },
+    ]
+  }
 ]
 
 const router = createRouter({

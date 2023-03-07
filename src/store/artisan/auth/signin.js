@@ -29,7 +29,7 @@ export const useSigninStore = defineStore('signin', {
             localStorage.getArtizanArtisanData = JSON.stringify(user.user)
 
             this.loading = false
-            router.push('artisan/overview')
+            router.push('/artisanDashboard/overview')
           })
           .catch((error) => {
             console.log(error)

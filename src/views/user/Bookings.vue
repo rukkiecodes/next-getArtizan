@@ -27,7 +27,7 @@
                   class="mr-1">mdi-hand-coin</v-icon>
                 <span class="font-weight-bold"
                   :class="booking?.status == 'pending' ? 'text-amber-darken-2' : booking?.status == 'approved' ? 'text-indigo-darken-2' : 'text-green-darken-2'">{{
-                    booking?.budget }}</span>
+                    (booking?.budget).toString().replace(/\B(?=(\d{3})+(?!\d))/g, ",") }}</span>
               </v-chip>
             </v-card-text>
             <v-card-text class="px-1">

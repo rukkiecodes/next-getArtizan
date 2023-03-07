@@ -13,7 +13,7 @@
         <span class="text-body-1 font-weight-regular text-grey-darken-4">
           If you already have an account You can
           <router-link
-            to="/signin"
+            to="/artisan/signin"
             class="text-decoration-none text-indigo-accent-4 font-weight-bold"
             >Sign In here</router-link
           ></span
