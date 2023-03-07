@@ -14,13 +14,13 @@
             </v-card-text>
             <v-card-title>{{ booking?.title }}</v-card-title>
             <v-card-text class="d-flex justify-space-between">
-              <v-chip
+              <v-chip size="small"
                 :color="booking?.status == 'pending' ? 'amber' : booking?.status == 'approved' ? 'indigo' : 'green'">
                 <span class="font-weight-bold"
                   :class="booking?.status == 'pending' ? 'text-amber-darken-2' : booking?.status == 'approved' ? 'text-indigo-darken-2' : 'text-green-darken-2'">{{
                     booking?.status }}</span>
               </v-chip>
-              <v-chip
+              <v-chip size="small"
                 :color="booking?.status == 'pending' ? 'amber' : booking?.status == 'approved' ? 'indigo' : 'green'">
                 <v-icon
                   :color="booking?.status == 'pending' ? 'amber-darken-2' : booking?.status == 'approved' ? 'indigo-darken-2' : 'green-darken-2'"
@@ -109,13 +109,13 @@
               </v-card-text>
               <v-card-title>{{ currentBooking?.title }}</v-card-title>
               <v-card-text class="d-flex justify-space-between">
-                <v-chip
+                <v-chip size="small"
                   :color="currentBooking?.status == 'pending' ? 'amber' : currentBooking?.status == 'approved' ? 'indigo' : 'green'">
                   <span class="font-weight-bold"
                     :class="currentBooking?.status == 'pending' ? 'text-amber-darken-2' : currentBooking?.status == 'approved' ? 'text-indigo-darken-2' : 'text-green-darken-2'">{{
                       currentBooking?.status }}</span>
                 </v-chip>
-                <v-chip
+                <v-chip size="small"
                   :color="currentBooking?.status == 'pending' ? 'amber' : currentBooking?.status == 'approved' ? 'indigo' : 'green'">
                   <v-icon
                     :color="currentBooking?.status == 'pending' ? 'amber-darken-2' : currentBooking?.status == 'approved' ? 'indigo-darken-2' : 'green-darken-2'"
@@ -167,7 +167,7 @@
       <v-card-actions>
         <v-spacer />
         <v-btn @click="currentBooking.dialog = false" class="mr-3">Reject</v-btn>
-        <v-btn :disabled="profile.user?.acceptedBookings.includes(currentBooking.id)" @click="() => {
+        <v-btn :disabled="profile.user?.acceptedBookings?.includes(currentBooking.id)" @click="() => {
           currentBooking.dialog = false
           acceptBooking.acceptBooking(currentBooking)
         }" class="bg-indigo">Accept booking</v-btn>
@@ -194,8 +194,7 @@ const { name } = useDisplay()
 const photoDialog = ref(false)
 
 const currentBooking = ref({
-  dialog: false,
-  body: ``
+  dialog: false
 })
 
 const setCurrnetBooking = (prop) => {

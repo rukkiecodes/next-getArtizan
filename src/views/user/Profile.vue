@@ -28,6 +28,10 @@
         {{ profile.user?.LGA }}
       </v-card-text>
       <v-card-text class="text-center">
+        <v-card-subtitle class="px-0 text-caption">Phone</v-card-subtitle>
+        {{ profile.user?.phone }}
+      </v-card-text>
+      <v-card-text class="text-center">
         <v-card-subtitle class="px-0 text-caption">Guarantor Name</v-card-subtitle>
         {{ profile.user?.guarantorName }}
       </v-card-text>
@@ -65,6 +69,8 @@
         <v-text-field v-model="profile.stateOfResidence" label="State of residence" density="compact" variant="underlined"
           color="indigo-accent-4" />
         <v-text-field v-model="profile.LGA" label="Local government of residence" density="compact" variant="underlined"
+          color="indigo-accent-4" />
+        <v-text-field v-model="profile.phone" label="Phone" density="compact" variant="underlined"
           color="indigo-accent-4" />
 
         <v-card-subtitle class="mb-2 mt-5 pl-0">Guarantor Details</v-card-subtitle>

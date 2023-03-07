@@ -26,7 +26,8 @@
     </v-list>
     <template v-slot:append>
       <div class="pa-2">
-        <v-btn @click="profile.signoutUser" block class="bg-red-lighten-4 text-capitalize text-red" prepend-icon="mdi-logout-variant" flat>
+        <v-btn @click="profile.signoutUser" block class="bg-red-lighten-4 text-capitalize text-red"
+          prepend-icon="mdi-logout-variant" flat>
           Logout
         </v-btn>
       </div>
@@ -41,14 +42,14 @@ const profile = useProfileStore();
 
 const routes = [
   {
-    title: "Overview",
-    icon: "mdi-view-dashboard",
-    to: "/artisanDashboard/overview",
-  },
-  {
     title: "Bookings",
     icon: "mdi-calendar",
     to: "/artisanDashboard/bookings",
+  },
+  {
+    title: "Jobs",
+    icon: "mdi-briefcase",
+    to: "/artisanDashboard/jobs",
   },
   {
     title: "Profile",

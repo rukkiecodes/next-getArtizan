@@ -5,7 +5,7 @@
     </v-app-bar-title>
     <v-spacer />
 
-    <v-chip v-if="profile.user" to="/dashboard/profile" class="pl-1 mr--sn-2 bg-white" variant="outlined"
+    <v-chip v-if="profile.user" to="/dashboard/profile" class="pl-1 mr--sn-2" variant="outlined"
       color="indigo-darken-4">
       <v-avatar class="mr-1">
         <v-img v-if="profile.user?.avatar" :src="profile.user?.avatar" cover />
