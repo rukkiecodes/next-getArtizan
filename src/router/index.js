@@ -61,16 +61,16 @@ const routes = [
     component: () => import('@/layouts/artisan/Default.vue'),
     children: [
       {
-        path: '',
-        component: () => import('@/views/artisan/App.vue'),
-      },
-      {
         path: 'overview',
         component: () => import('@/views/artisan/App.vue'),
       },
       {
         path: 'bookings',
         component: () => import('@/views/artisan/Bookings.vue'),
+      },
+      {
+        path: 'jobs',
+        component: () => import('@/views/artisan/Jobs.vue'),
       },
       {
         path: 'profile',

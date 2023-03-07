@@ -14,13 +14,16 @@ import AppBar from "./AppBar.vue";
 import Drawer from "./Drawer.vue";
 import { useProfileStore } from "@/store/artisan/profile/profile";
 import { useArtizanGetBookingStore } from "@/store/artisan/booking/getBookings";
+import { useArtizanGetJobsStore } from "@/store/artisan/booking/getJobs";
 import { onMounted } from "vue";
 
 const profile = useProfileStore();
 const booking = useArtizanGetBookingStore();
+const job = useArtizanGetJobsStore();
 
 onMounted(() => {
   profile.getProfile();
   booking.getBookings()
+  job.getJobs()
 });
 </script>
