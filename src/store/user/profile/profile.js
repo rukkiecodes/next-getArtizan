@@ -26,7 +26,7 @@ export const useProfileStore = defineStore('profile', {
 
     actions: {
         async getProfile() {
-            const userData = await JSON.parse(localStorage.getItem('getArtizanUserData'))
+            const userData = await JSON.parse(localStorage.getItem('getArtizanArtisanData'))
 
             // Get profile from real time from firestore
             const unsub = onSnapshot(doc(db, 'user', userData.uid), (doc) => {
@@ -107,8 +107,8 @@ export const useProfileStore = defineStore('profile', {
 
         signoutUser() {
             signOut(auth)
-            localStorage.removeItem('getArtizanUserData')
-            router.push('/customer')
+            localStorage.removeItem('getArtizanArtisanData')
+            router.push('/')
         }
     }
 })

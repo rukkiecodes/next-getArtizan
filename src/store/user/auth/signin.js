@@ -9,7 +9,7 @@ import router from '@/router'
 
 const snackbar = useAppStore()
 
-export const useSigninStore = defineStore('signin', {
+export const useUserSigninStore = defineStore('userSignin', {
   state: () => ({
     email: '',
     password: '',

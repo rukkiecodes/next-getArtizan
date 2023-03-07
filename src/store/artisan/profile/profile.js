@@ -23,7 +23,7 @@ export const useProfileStore = defineStore('profile', {
 
     actions: {
         async getProfile() {
-            const userData = await JSON.parse(localStorage.getItem('getArtizanUserData'))
+            const userData = await JSON.parse(localStorage.getItem('getArtizanArtisanData'))
 
             // Get profile from real time from firestore
             const unsub = onSnapshot(doc(db, 'artisan', userData.uid), (doc) => {
