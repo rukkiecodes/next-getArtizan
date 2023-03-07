@@ -94,6 +94,17 @@
                   <v-img
                     :src="currentBooking?.photo != null ? currentBooking?.photo : 'https://res.cloudinary.com/rukkiecodes/image/upload/v1678145143/takeOff_p3xuej.svg'"
                     cover />
+                  <v-dialog v-model="photoDialog" activator="parent" width="700">
+                    <v-card>
+                      <v-toolbar floating density="compact" color="transparent">
+                        <v-spacer />
+                        <v-btn color="grey-darken-3" @click="photoDialog = false" icon size="small">
+                          <v-icon>mdi-close</v-icon>
+                        </v-btn>
+                      </v-toolbar>
+                      <v-img :src="currentBooking?.photo" cover />
+                    </v-card>
+                  </v-dialog>
                 </v-avatar>
               </v-card-text>
               <v-card-title>{{ currentBooking?.title }}</v-card-title>
@@ -179,6 +190,8 @@ const acceptBooking = ref(useAcceptArtizanBooking());
 const profile = ref(useProfileStore());
 
 const { name } = useDisplay()
+
+const photoDialog = ref(false)
 
 const currentBooking = ref({
   dialog: false,
