@@ -5,6 +5,7 @@ import { defineStore } from 'pinia'
 
 export const useuserOverviewStore = defineStore('userOverview', {
     state: () => ({
+        drawer: false,
         pendingCount: 0,
         approvedCount: 0,
         completedCount: 0,

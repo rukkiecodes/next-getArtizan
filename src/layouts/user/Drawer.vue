@@ -1,5 +1,5 @@
 <template>
-  <v-navigation-drawer class="pa-2">
+  <v-navigation-drawer v-model="overview.drawer" class="pa-2">
     <template v-slot:prepend>
       <v-card class="py-10" flat>
         <v-card-text class="text-center">
@@ -25,7 +25,8 @@
     </v-list>
     <template v-slot:append>
       <div class="pa-2">
-        <v-btn block class="bg-red-lighten-4 text-capitalize text-red" prepend-icon="mdi-logout-variant" flat>
+        <v-btn @click="profile.signoutUser" block class="bg-red-lighten-4 text-capitalize text-red"
+          prepend-icon="mdi-logout-variant" flat>
           Logout
         </v-btn>
       </div>
@@ -34,10 +35,14 @@
 </template>
 
 <script setup>
-import { ref } from 'vue'
+import { computed, ref, onMounted } from 'vue'
 import { useProfileStore } from '@/store/user/profile/profile';
+import { useuserOverviewStore } from '@/store/user/overview'
+import { useDisplay } from 'vuetify'
 
 const profile = ref(useProfileStore())
+const overview = ref(useuserOverviewStore())
+const { name } = useDisplay()
 
 const routes = [
   {
@@ -56,4 +61,19 @@ const routes = [
     to: "/dashboard/profile",
   },
 ];
+
+onMounted(() => {
+  drawerVisibility()
+})
+
+const drawerVisibility = () => {
+  switch (name.value) {
+    case 'xs': return overview.value.drawer = false
+    case 'sm': return overview.value.drawer = false
+    case 'md': return overview.value.drawer = false
+    case 'lg': return overview.value.drawer = true
+    case 'xl': return overview.value.drawer = true
+    case 'xxl': return overview.value.drawer = true
+  }
+}
 </script>
