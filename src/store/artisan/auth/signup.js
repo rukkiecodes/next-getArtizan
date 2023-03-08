@@ -14,13 +14,18 @@ export const useSignupStore = defineStore('signup', {
   state: () => ({
     name: '',
     email: '',
+    phone: '',
+    gender: 'Male',
+    stateOfResidence: '',
+    LGA: '',
+    specialisation: 'Actor',
     password: '',
     loading: false
   }),
 
   actions: {
     signupUser() {
-      if (this.name === '' || this.email === '' || this.password === '') {
+      if (this.name === '' || this.email === '' || this.phone == '' || this.gender == '' || this.stateOfResidence == '' || this.LGA == '' || this.specialisation == '' || this.password === '') {
         snackbar.snackbar = true
         snackbar.snackbarText = 'Please fill in all fields'
         snackbar.snackbarColor = 'error'
@@ -33,6 +38,11 @@ export const useSignupStore = defineStore('signup', {
             await setDoc(doc(db, 'artisan', user.user.uid), {
               name: this.name,
               email: this.email,
+              phone: this.phone,
+              gender: this.gender,
+              stateOfResidence: this.stateOfResidence,
+              LGA: this.LGA,
+              specialisation: this.specialisation,
               uid: user.user.uid,
               createdAt: serverTimestamp()
             })

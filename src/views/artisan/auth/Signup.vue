@@ -12,65 +12,30 @@
         </p>
         <span class="text-body-1 font-weight-regular text-grey-darken-4">
           If you already have an account You can
-          <router-link
-            to="/artisan/signin"
-            class="text-decoration-none text-indigo-accent-4 font-weight-bold"
-            >Sign In here</router-link
-          ></span
-        >
+          <router-link to="/artisan/signin" class="text-decoration-none text-indigo-accent-4 font-weight-bold">Sign In
+            here</router-link></span>
       </v-card>
-      <v-card
-        elevation="0"
-        width="400"
-        max-width="100%"
-        class="rounded-xl glass mt-10 mt-md-0"
-      >
+      <v-card elevation="0" width="400" max-width="100%" class="rounded-xl glass mt-10 mt-md-0">
         <v-card-text>
           <v-form>
-            <v-sheet color="indigo-lighten-5" class="rounded-lg px-4 mb-4">
-              <v-text-field
-                v-model="signup.name"
-                label="Name"
-                type="email"
-                variant="plain"
-                density="comfortable"
-                prepend-inner-icon="mdi-account-outline"
-                hide-details
-                required
-              />
-            </v-sheet>
-            <v-sheet color="indigo-lighten-5" class="rounded-lg px-4 mb-4">
-              <v-text-field
-                v-model="signup.email"
-                label="Email"
-                type="email"
-                variant="plain"
-                density="comfortable"
-                prepend-inner-icon="mdi-at"
-                hide-details
-                required
-              />
-            </v-sheet>
-            <v-sheet color="indigo-lighten-5" class="rounded-lg px-4 mb-4">
-              <v-text-field
-                v-model="signup.password"
-                label="Password"
-                type="password"
-                variant="plain"
-                density="comfortable"
-                prepend-inner-icon="mdi-lock-outline"
-                hide-details
-                required
-              />
-            </v-sheet>
+            <v-text-field v-model="signup.name" label="Name" variant="plain" density="comfortable"
+              prepend-inner-icon="mdi-account-outline" required />
+            <v-text-field v-model="signup.email" label="Email" type="email" variant="plain" density="comfortable"
+              prepend-inner-icon="mdi-at" required />
+            <v-text-field v-model="signup.phone" label="Phone" variant="plain" density="comfortable"
+              prepend-inner-icon="mdi-phone" required />
+            <v-select v-model="signup.gender" :items="['Male', 'Female']" label="Gender" variant="plain"
+              density="comfortable" prepend-inner-icon="mdi-gender-male-female" required />
+            <v-text-field v-model="signup.stateOfResidence" label="State Of Residence" variant="plain"
+              density="comfortable" prepend-inner-icon="mdi-map-marker-outline" required />
+            <v-text-field v-model="signup.LGA" label="Local Government Area" variant="plain" density="comfortable"
+              prepend-inner-icon="mdi-map-marker-outline" required />
+            <v-select v-model="signup.specialisation" :items="app.categories" label="Area of specialisation"
+              variant="plain" density="comfortable" prepend-inner-icon="mdi-account-hard-hat-outline" required />
+            <v-text-field v-model="signup.password" label="Password" type="password" variant="plain" density="comfortable"
+              prepend-inner-icon="mdi-lock-outline" hide-details required />
 
-            <v-btn
-              :loading="signup.loading"
-              @click="signup.signupUser"
-              color="indigo-accent-4"
-              class="rounded-lg"
-              block
-            >
+            <v-btn :loading="signup.loading" @click="signup.signupUser" color="indigo-accent-4" class="rounded-lg" block>
               Sign Up
             </v-btn>
           </v-form>
@@ -83,8 +48,10 @@
 <script setup>
 import { ref } from "vue";
 import { useSignupStore } from "@/store/artisan/auth/signup";
+import { useAppStore } from "@/store/app";
 
 const signup = ref(useSignupStore());
+const app = ref(useAppStore())
 </script>
 
 <style scoped>

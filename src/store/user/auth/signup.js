@@ -14,13 +14,14 @@ export const useUserSignupStore = defineStore('userSignup', {
   state: () => ({
     name: '',
     email: '',
+    phone: '',
     password: '',
     loading: false
   }),
 
   actions: {
     signupUser() {
-      if (this.name === '' || this.email === '' || this.password === '') {
+      if (this.name === '' || this.email === '' || this.phone == '' || this.password === '') {
         snackbar.snackbar = true
         snackbar.snackbarText = 'Please fill in all fields'
         snackbar.snackbarColor = 'error'
@@ -33,6 +34,7 @@ export const useUserSignupStore = defineStore('userSignup', {
             await setDoc(doc(db, 'user', user.user.uid), {
               name: this.name,
               email: this.email,
+              phone: this.phone,
               uid: user.user.uid,
               createdAt: serverTimestamp()
             })
