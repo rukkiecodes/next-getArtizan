@@ -56,7 +56,7 @@
     <v-card class="ma-4 rounded-lg" :elevation="flat" :color="color">
       <v-card-title class="text-grey-darken-4 text-body-1">Edit your profile</v-card-title>
       <v-card-text class="text-center my-4">
-        <v-avatar @click="clickOnInput" color="indigo" size="80">
+        <v-avatar @click="clickOnInput" color="indigo" size="80" style="cursor: pointer;">
           <v-img v-if="profile.user?.avatar" :src="profile.user?.avatar" cover />
           <v-icon v-else size="30">mdi-account</v-icon>
         </v-avatar>

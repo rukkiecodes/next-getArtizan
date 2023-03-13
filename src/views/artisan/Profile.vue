@@ -106,6 +106,36 @@
       <v-card-actions>
         <v-btn @click="profile.updateProfile" :loading="profile.loading" class="bg-indigo" block>Save</v-btn>
       </v-card-actions>
+
+      <div v-if="profile.user?.tier == 'tier 1'">
+        <v-divider class="my-4" />
+
+        <v-card-subtitle class="mb-2 font-weight-bold">Proof of Identity</v-card-subtitle>
+
+        <v-row dense>
+          <v-col cols="12">
+            <v-card flat>
+              <v-card-actions>
+                <v-btn block size="x-large" class="text-body-1 bg-amber-darken-2 text-white">Drivers license</v-btn>
+              </v-card-actions>
+            </v-card>
+          </v-col>
+          <v-col cols="12">
+            <v-card flat>
+              <v-card-actions>
+                <v-btn block size="x-large" class="text-body-1 bg-amber-darken-2 text-white">NIN</v-btn>
+              </v-card-actions>
+            </v-card>
+          </v-col>
+          <v-col cols="12">
+            <v-card flat>
+              <v-card-actions>
+                <v-btn block size="x-large" class="text-body-1 bg-amber-darken-2 text-white">Voters Card</v-btn>
+              </v-card-actions>
+            </v-card>
+          </v-col>
+        </v-row>
+      </div>
     </v-card>
   </v-navigation-drawer>
 </template>
@@ -114,6 +144,7 @@
 import { ref, onMounted, computed } from "vue";
 import { useProfileStore } from "@/store/artisan/profile/profile";
 import { useOTPStore } from "@/store/artisan/auth/otp";
+import { useIDStore } from "@/store/artisan/auth/id";
 import { useAppStore } from "@/store/app";
 import { useDisplay } from "vuetify";
 import Tier from "@/components/artizan/Tier.vue";
@@ -124,6 +155,7 @@ const profile = ref(useProfileStore());
 const app = ref(useAppStore());
 const drawer = ref(true);
 const otp = ref(useOTPStore());
+const id = ref(useIDStore());
 
 const clickOnInput = () => {
   document.querySelector("#avatarInput").click();
