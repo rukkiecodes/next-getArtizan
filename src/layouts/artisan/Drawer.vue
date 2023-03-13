@@ -9,6 +9,11 @@
           </v-avatar>
         </v-card-text>
 
+        <v-card-text class="d-flex justify-center">
+          <v-chip size="small" :color="profile.user?.tier == 'not verified' ? 'red' : ''" class="text-capitalize">{{
+            profile.user?.tier }}</v-chip>
+        </v-card-text>
+
         <v-card-title class="text-center text-grey-darken-4">{{ profile.user?.name }}</v-card-title>
         <v-card-subtitle class="text-center">{{ profile.user?.email }}</v-card-subtitle>
       </v-card>

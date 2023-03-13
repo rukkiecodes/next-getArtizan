@@ -19,21 +19,21 @@
         <v-card-text>
           <v-form>
             <v-text-field v-model="signup.name" label="Name" variant="plain" density="comfortable"
-              prepend-inner-icon="mdi-account-outline" required />
+              prepend-inner-icon="mdi-account-outline" />
             <v-text-field v-model="signup.email" label="Email" type="email" variant="plain" density="comfortable"
-              prepend-inner-icon="mdi-at" required />
+              prepend-inner-icon="mdi-at" />
             <v-text-field v-model="signup.phone" label="Phone" variant="plain" density="comfortable"
-              prepend-inner-icon="mdi-phone" required />
+              prepend-inner-icon="mdi-phone" />
             <v-select v-model="signup.gender" :items="['Male', 'Female']" label="Gender" variant="plain"
-              density="comfortable" prepend-inner-icon="mdi-gender-male-female" required />
+              density="comfortable" prepend-inner-icon="mdi-gender-male-female" />
             <v-text-field v-model="signup.stateOfResidence" label="State Of Residence" variant="plain"
-              density="comfortable" prepend-inner-icon="mdi-map-marker-outline" required />
+              density="comfortable" prepend-inner-icon="mdi-map-marker-outline" />
             <v-text-field v-model="signup.LGA" label="Local Government Area" variant="plain" density="comfortable"
-              prepend-inner-icon="mdi-map-marker-outline" required />
+              prepend-inner-icon="mdi-map-marker-outline" />
             <v-select v-model="signup.specialisation" :items="app.categories" label="Area of specialisation"
-              variant="plain" density="comfortable" prepend-inner-icon="mdi-account-hard-hat-outline" required />
+              variant="plain" density="comfortable" prepend-inner-icon="mdi-account-hard-hat-outline" />
             <v-text-field v-model="signup.password" label="Password" type="password" variant="plain" density="comfortable"
-              prepend-inner-icon="mdi-lock-outline" hide-details required />
+              prepend-inner-icon="mdi-lock-outline" />
 
             <v-btn :loading="signup.loading" @click="signup.signupUser" color="indigo-accent-4" class="rounded-lg" block>
               Sign Up
