@@ -18,18 +18,14 @@
       <v-card elevation="0" width="400" max-width="100%" class="rounded-xl glass mt-10 mt-md-0">
         <v-card-text>
           <v-form>
-            <v-sheet color="indigo-lighten-5" class="rounded-lg px-4 mb-4">
-              <v-text-field v-model="signup.name" label="Name" type="email" variant="plain" density="comfortable"
-                prepend-inner-icon="mdi-account-outline" hide-details required />
-            </v-sheet>
-            <v-sheet color="indigo-lighten-5" class="rounded-lg px-4 mb-4">
-              <v-text-field v-model="signup.email" label="Email" type="email" variant="plain" density="comfortable"
-                prepend-inner-icon="mdi-at" hide-details required />
-            </v-sheet>
-            <v-sheet color="indigo-lighten-5" class="rounded-lg px-4 mb-4">
-              <v-text-field v-model="signup.password" label="Password" type="password" variant="plain"
-                density="comfortable" prepend-inner-icon="mdi-lock-outline" hide-details required />
-            </v-sheet>
+            <v-text-field v-model="signup.name" label="Name" variant="plain" density="comfortable"
+              prepend-inner-icon="mdi-account-outline" required />
+            <v-text-field v-model="signup.email" label="Email" type="email" variant="plain" density="comfortable"
+              prepend-inner-icon="mdi-at" required />
+            <v-text-field v-model="signup.phone" label="Phone" variant="plain" density="comfortable"
+              prepend-inner-icon="mdi-phone" required />
+            <v-text-field v-model="signup.password" label="Password" type="password" variant="plain" density="comfortable"
+              prepend-inner-icon="mdi-lock-outline" required />
 
             <v-btn :loading="signup.loading" @click="signup.signupUser" color="indigo-accent-4" class="rounded-lg" block>
               Sign Up

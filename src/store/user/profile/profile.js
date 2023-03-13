@@ -91,6 +91,8 @@ export const useProfileStore = defineStore('profile', {
         async updateProfile() {
             this.loading = true
 
+            if (!this.user) return
+
             await updateDoc(doc(db, 'user', this.user.uid), {
                 gender: this.gender,
                 stateOfResidence: this.stateOfResidence,

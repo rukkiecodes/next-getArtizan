@@ -9,6 +9,10 @@
           </v-avatar>
         </v-card-text>
 
+        <v-card-text class="d-flex justify-center">
+          <Tier />
+        </v-card-text>
+
         <v-card-title class="text-center text-grey-darken-4">{{ profile.user?.name }}</v-card-title>
         <v-card-subtitle class="text-center">{{ profile.user?.email }}</v-card-subtitle>
       </v-card>
@@ -37,6 +41,7 @@
 
 <script setup>
 import { useProfileStore } from "@/store/artisan/profile/profile";
+import Tier from "@/components/artizan/Tier.vue";
 
 const profile = useProfileStore();
 

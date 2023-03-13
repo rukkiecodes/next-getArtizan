@@ -12,22 +12,17 @@
         </p>
         <span class="text-body-1 font-weight-regular text-grey-darken-4">
           If you Don't have an account You can
-          <router-link to="/" class="text-decoration-none text-indigo-accent-4 font-weight-bold">Sign Up
+          <router-link to="/" class="text-decoration-none text-indigo font-weight-bold">Sign Up
             here</router-link></span>
       </v-card>
       <v-card elevation="0" width="400" max-width="100%" class="rounded-xl glass mt-10 mt-md-0">
         <v-card-text>
           <v-form>
-            <v-sheet color="indigo-lighten-5" class="rounded-lg px-4 mb-4">
-              <v-text-field v-model="signin.email" label="Email" type="email" variant="plain" density="comfortable"
-                prepend-inner-icon="mdi-at" hide-details required />
-            </v-sheet>
-            <v-sheet color="indigo-lighten-5" class="rounded-lg px-4 mb-4">
-              <v-text-field v-model="signin.password" label="Password" type="password" variant="plain"
-                density="comfortable" prepend-inner-icon="mdi-lock-outline" hide-details required />
-            </v-sheet>
+            <v-text-field v-model="signin.email" label="Email" type="email" variant="plain" prepend-inner-icon="mdi-at" />
+            <v-text-field v-model="signin.password" label="Password" type="password" variant="plain"
+              prepend-inner-icon="mdi-lock-outline" />
 
-            <v-btn @click="signin.signinUser" :loading="signin.loading" color="indigo-accent-4" class="rounded-lg" block>
+            <v-btn @click="signin.signinUser" :loading="signin.loading" color="indigo" class="rounded-lg" block>
               Sign In
             </v-btn>
           </v-form>
@@ -44,4 +39,6 @@ import { useUserSigninStore } from "@/store/user/auth/signin";
 const signin = ref(useUserSigninStore());
 </script>
 
-<style scoped>@import "./assets/style.css";</style>
+<style scoped>
+@import "./assets/style.css";
+</style>

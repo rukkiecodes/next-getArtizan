@@ -1,32 +1,5 @@
 <template>
   <v-container>
-    <v-card-subtitle>Find Artizan</v-card-subtitle>
-    <v-card flat class="rounded-xl mt-5 mb-10" color="transparent">
-      <v-card-text>
-        <v-row>
-          <v-col cols="12" sm="6" md="3" v-for="artizan in artizan.artizans" :key="artizan.id">
-            <v-card flat class="rounded-xl">
-              <v-card height="180" class="rounded-0" flat>
-                <v-img :src="artizan?.avatar" cover />
-              </v-card>
-
-              <v-card-title class="text-h6 text-grey-darken-3">{{ artizan?.name }}</v-card-title>
-              <v-card-subtitle class="text-caption text-grey-darken-2">specialisation</v-card-subtitle>
-              <v-card-text class="text-caption text-grey-darken-4 font-weight-bold py-0">{{ artizan?.specialisation
-              }}</v-card-text>
-              <v-card-subtitle class="text-caption text-grey-darken-2">Email</v-card-subtitle>
-              <v-card-text class="text-caption text-grey-darken-4 font-weight-bold py-0">{{ artizan?.email
-              }}</v-card-text>
-              <v-card-subtitle class="text-caption text-grey-darken-2">Phone</v-card-subtitle>
-              <v-card-text class="text-caption text-grey-darken-4 font-weight-bold py-0">{{ artizan?.phone
-              }}</v-card-text>
-              <v-card-text></v-card-text>
-            </v-card>
-          </v-col>
-        </v-row>
-      </v-card-text>
-    </v-card>
-
     <v-card-subtitle>Booking staus</v-card-subtitle>
     <v-card class="mt-5 rounded-xl" flat>
       <v-card-text>

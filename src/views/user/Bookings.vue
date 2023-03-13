@@ -85,9 +85,66 @@
           <v-icon>mdi-close</v-icon>
         </v-btn>
       </v-toolbar>
-      <v-card-text>
-        {{ currentBooking.body }}
-      </v-card-text>
+
+      <v-card>
+        <v-card-text class="text-center">
+          <v-avatar size="150">
+            <v-img
+              :src="currentBooking?.photo != null ? currentBooking?.photo : 'https://res.cloudinary.com/rukkiecodes/image/upload/v1678145143/takeOff_p3xuej.svg'"
+              cover />
+          </v-avatar>
+        </v-card-text>
+        <v-card-title>{{ currentBooking?.title }}</v-card-title>
+        <v-card-text class="d-flex justify-space-between">
+          <v-chip :color="currentBooking?.status == 'pending' ? 'amber' : currentBooking?.status == 'approved' ? 'indigo' : 'green'">
+            <span class="font-weight-bold"
+              :class="currentBooking?.status == 'pending' ? 'text-amber-darken-2' : currentBooking?.status == 'approved' ? 'text-indigo-darken-2' : 'text-green-darken-2'">{{
+                currentBooking?.status }}</span>
+          </v-chip>
+          <v-chip
+            :color="currentBooking?.status == 'pending' ? 'amber' : currentBooking?.status == 'approved' ? 'indigo' : 'green'">
+            <v-icon
+              :color="currentBooking?.status == 'pending' ? 'amber-darken-2' : currentBooking?.status == 'approved' ? 'indigo-darken-2' : 'green-darken-2'"
+              class="mr-1">mdi-hand-coin</v-icon>
+            <span class="font-weight-bold"
+              :class="currentBooking?.status == 'pending' ? 'text-amber-darken-2' : currentBooking?.status == 'approved' ? 'text-indigo-darken-2' : 'text-green-darken-2'">{{
+                (currentBooking?.budget).toString().replace(/\B(?=(\d{3})+(?!\d))/g, ",") }}</span>
+          </v-chip>
+        </v-card-text>
+        <v-card-text class="px-1">
+          <v-list-item density="compact">
+            <v-list-item-subtitle class="text-caption">Category</v-list-item-subtitle>
+            <v-list-item-title class="text-grey-darken-4 text-body-2 font-weight-bold">{{ currentBooking?.category
+            }}</v-list-item-title>
+          </v-list-item>
+          <v-list-item density="compact">
+            <v-list-item-subtitle class="text-caption">Location</v-list-item-subtitle>
+            <v-list-item-title class="text-grey-darken-4 text-body-2 font-weight-bold">{{ currentBooking?.location
+            }}</v-list-item-title>
+          </v-list-item>
+          <v-list-item density="compact">
+            <v-list-item-subtitle class="text-caption">Date</v-list-item-subtitle>
+            <v-list-item-title class="text-grey-darken-4 text-body-2 font-weight-bold">{{ currentBooking?.date
+            }}</v-list-item-title>
+          </v-list-item>
+          <v-list-item density="compact">
+            <v-list-item-subtitle class="text-caption">Time</v-list-item-subtitle>
+            <v-list-item-title class="text-grey-darken-4 text-body-2 font-weight-bold">{{ currentBooking?.time
+            }}</v-list-item-title>
+          </v-list-item>
+          <v-list-item density="compact">
+            <v-list-item-subtitle class="text-caption">Created on</v-list-item-subtitle>
+            <v-list-item-title class="text-grey-darken-4 text-body-2 font-weight-bold">{{
+              currentBooking?.createdAt?.toDate().toDateString()
+            }}</v-list-item-title>
+          </v-list-item>
+        </v-card-text>
+
+        <v-card-subtitle class="text-caption">Description</v-card-subtitle>
+        <v-card-text class="text-body-1">
+          {{ currentBooking.description }}
+        </v-card-text>
+      </v-card>
     </v-card>
   </v-dialog>
 
@@ -145,12 +202,15 @@ const app = ref(useAppStore());
 
 const currentBooking = ref({
   dialog: false,
-  body: ``
 })
 
 const setCurrnetBooking = (prop) => {
-  currentBooking.value.dialog = true;
-  currentBooking.value.body = prop.description;
+  currentBooking.value = {
+    dialog: true,
+    ...prop
+  }
+  // currentBooking.value.dialog = true;
+  // currentBooking.value.body = prop.description;
 }
 
 const setPicture = (e) => {

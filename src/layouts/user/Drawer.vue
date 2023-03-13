@@ -51,11 +51,6 @@ const routes = [
     to: "/dashboard/overview",
   },
   {
-    title: "Artizan",
-    icon: "mdi-account-hard-hat",
-    to: "/dashboard/artizan",
-  },
-  {
     title: "Bookings",
     icon: "mdi-calendar",
     to: "/dashboard/bookings",
