@@ -10,8 +10,7 @@
         </v-card-text>
 
         <v-card-text class="d-flex justify-center">
-          <v-chip size="small" :color="profile.user?.tier == 'not verified' ? 'red' : ''" class="text-capitalize">{{
-            profile.user?.tier }}</v-chip>
+          <Tier />
         </v-card-text>
 
         <v-card-title class="text-center text-grey-darken-4">{{ profile.user?.name }}</v-card-title>
@@ -42,6 +41,7 @@
 
 <script setup>
 import { useProfileStore } from "@/store/artisan/profile/profile";
+import Tier from "@/components/artizan/Tier.vue";
 
 const profile = useProfileStore();
 
