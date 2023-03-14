@@ -49,18 +49,18 @@
         </tr>
       </thead>
       <tbody>
-        <v-hover v-for="booking in booking.bookings.slice(0, 50)" :key="booking.id">
+        <v-hover v-for="history in history.history?.slice(0, 50)" :key="history.id">
           <template v-slot:default="{ isHovering, props }">
-            <tr @click="setActiveDialog(booking)" v-bind="props" :class="isHovering ? 'bg-indigo-lighten-5' : undefined"
+            <tr @click="setActiveDialog(history)" v-bind="props" :class="isHovering ? 'bg-indigo-lighten-5' : undefined"
               style="cursor: pointer;">
-              <td class="text-grey-darken-2 text-caption font-weight-bold">{{ booking?.time }}</td>
-              <td class="text-grey-darken-2 text-caption font-weight-bold">{{ booking?.date }}</td>
+              <td class="text-grey-darken-2 text-caption font-weight-bold">{{ history?.time }}</td>
+              <td class="text-grey-darken-2 text-caption font-weight-bold">{{ history?.date }}</td>
               <td class="text-grey-darken-2 text-caption font-weight-bold">{{
-                (booking?.budget).toString().replace(/\B(?=(\d{3})+(?!\d))/g, ",") }}</td>
+                (history?.budget).toString().replace(/\B(?=(\d{3})+(?!\d))/g, ",") }}</td>
               <td>
                 <v-chip
-                  :color="booking?.status === 'pending' ? 'amber' : booking?.status === 'approved' ? 'indigo' : 'green'">
-                  <span class="font-weight-bold text-caption">{{ booking?.status }}</span>
+                  :color="history?.status === 'pending' ? 'amber' : history?.status === 'approved' ? 'indigo' : 'green'">
+                  <span class="font-weight-bold text-caption">{{ history?.status }}</span>
                 </v-chip>
               </td>
             </tr>
@@ -149,10 +149,12 @@ import { ref } from "vue";
 import { useuserOverviewStore } from "@/store/user/overview";
 import { useGetBookingStore } from "@/store/user/booking/getBookings";
 import { useArtizansStore } from '@/store/user/artizans'
+import { useHistoryStore } from '@/store/artisan/overview/history'
 
 const overview = ref(useuserOverviewStore());
 const booking = ref(useGetBookingStore());
 const artizan = ref(useArtizansStore())
+const history = ref(useHistoryStore())
 
 const activeDialog = ref({
   dialog: false
