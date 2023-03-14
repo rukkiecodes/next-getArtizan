@@ -1,8 +1,6 @@
 <template>
-    <v-chip size="small"
-        :color="profile.user?.tier == 'not verified' ? 'red' : profile.user?.tier == 'tier 1' ? 'indigo-accent-4' : ''"
-        class="text-capitalize">{{
-            profile.user?.tier }}</v-chip>
+    <v-chip size="small" :color="profile.user?.tier == 'not verified' ? 'red' : 'green'" class="text-capitalize">{{
+        profile.user?.tier }}</v-chip>
 </template>
 
 <script setup>
