@@ -35,7 +35,7 @@
 </template>
 
 <script setup>
-import { computed, ref, onMounted } from 'vue'
+import { ref, onMounted } from 'vue'
 import { useProfileStore } from '@/store/user/profile/profile';
 import { useuserOverviewStore } from '@/store/user/overview'
 import { useDisplay } from 'vuetify'

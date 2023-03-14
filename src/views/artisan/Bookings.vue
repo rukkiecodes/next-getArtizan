@@ -3,6 +3,12 @@
     :class="bookings.bookings.length <= 0 ? 'd-flex align-center' : ''">
     <v-container :class="bookings.bookings.length <= 0 ? 'd-flex justify-center' : ''">
       <v-row v-if="bookings.bookings.length > 0">
+        <v-col cols="12">
+          <v-btn @click="bookings.getBookings" class="bg-indigo rounded-pill text-capitalize" flat>
+            <v-icon class="mr-2">mdi-reload</v-icon>
+            Refresh List
+          </v-btn>
+        </v-col>
         <v-col v-for="booking in bookings.bookings" :key="booking.id" cols="12" sm="4" md="3">
           <v-card>
             <v-card-text class="text-center">
@@ -15,52 +21,24 @@
             <v-card-title>{{ booking?.title }}</v-card-title>
             <v-card-text class="d-flex justify-space-between">
               <v-chip size="small"
-                :color="booking?.status == 'pending' ? 'amber' : booking?.status == 'approved' ? 'indigo' : 'green'">
+                :color="booking?.status == 'pending' ? 'amber' : booking?.status == 'approved' ? 'indigo' : booking?.status == 'declined' ? 'red' : ''">
                 <span class="font-weight-bold"
-                  :class="booking?.status == 'pending' ? 'text-amber-darken-2' : booking?.status == 'approved' ? 'text-indigo-darken-2' : 'text-green-darken-2'">{{
+                  :class="booking?.status == 'pending' ? 'text-amber-darken-2' : booking?.status == 'approved' ? 'text-indigo-darken-2' : booking?.status == 'declined' ? 'text-red-darken-2' : ''">{{
                     booking?.status }}</span>
               </v-chip>
               <v-chip size="small"
-                :color="booking?.status == 'pending' ? 'amber' : booking?.status == 'approved' ? 'indigo' : 'green'">
+                :color="booking?.status == 'pending' ? 'amber' : booking?.status == 'approved' ? 'indigo' : booking?.status == 'declined' ? 'red' : ''">
                 <v-icon
-                  :color="booking?.status == 'pending' ? 'amber-darken-2' : booking?.status == 'approved' ? 'indigo-darken-2' : 'green-darken-2'"
+                  :color="booking?.status == 'pending' ? 'amber-darken-2' : booking?.status == 'approved' ? 'indigo-darken-2' : booking?.status == 'declined' ? 'red-darken-2' : ''"
                   class="mr-1">mdi-hand-coin</v-icon>
                 <span class="font-weight-bold"
-                  :class="booking?.status == 'pending' ? 'text-amber-darken-2' : booking?.status == 'approved' ? 'text-indigo-darken-2' : 'text-green-darken-2'">{{
+                  :class="booking?.status == 'pending' ? 'text-amber-darken-2' : booking?.status == 'approved' ? 'text-indigo-darken-2' : booking?.status == 'declined' ? 'text-red-darken-2' : ''">{{
                     (booking?.budget).toString().replace(/\B(?=(\d{3})+(?!\d))/g, ",") }}</span>
               </v-chip>
             </v-card-text>
-            <v-card-text class="px-1">
-              <v-list-item density="compact">
-                <v-list-item-subtitle class="text-caption">Category</v-list-item-subtitle>
-                <v-list-item-title class="text-grey-darken-4 text-body-2 font-weight-bold">{{ booking?.category
-                }}</v-list-item-title>
-              </v-list-item>
-              <v-list-item density="compact">
-                <v-list-item-subtitle class="text-caption">Location</v-list-item-subtitle>
-                <v-list-item-title class="text-grey-darken-4 text-body-2 font-weight-bold">{{ booking?.location
-                }}</v-list-item-title>
-              </v-list-item>
-              <v-list-item density="compact">
-                <v-list-item-subtitle class="text-caption">Date</v-list-item-subtitle>
-                <v-list-item-title class="text-grey-darken-4 text-body-2 font-weight-bold">{{ booking?.date
-                }}</v-list-item-title>
-              </v-list-item>
-              <v-list-item density="compact">
-                <v-list-item-subtitle class="text-caption">Time</v-list-item-subtitle>
-                <v-list-item-title class="text-grey-darken-4 text-body-2 font-weight-bold">{{ booking?.time
-                }}</v-list-item-title>
-              </v-list-item>
-              <v-list-item density="compact">
-                <v-list-item-subtitle class="text-caption">Created on</v-list-item-subtitle>
-                <v-list-item-title class="text-grey-darken-4 text-body-2 font-weight-bold">{{
-                  booking?.createdAt?.toDate().toDateString()
-                }}</v-list-item-title>
-              </v-list-item>
-            </v-card-text>
             <v-card-actions>
-              <v-btn @click="setCurrnetBooking(booking)" class="bg-indigo-lighten-4 text-body-2 text-indigo-accent-4"
-                block>View Description</v-btn>
+              <v-btn @click="setCurrnetBooking(booking)" class="bg-indigo-lighten-5 text-body-2 text-indigo-accent-4"
+                block>View details</v-btn>
             </v-card-actions>
           </v-card>
         </v-col>
@@ -110,18 +88,18 @@
               <v-card-title>{{ currentBooking?.title }}</v-card-title>
               <v-card-text class="d-flex justify-space-between">
                 <v-chip size="small"
-                  :color="currentBooking?.status == 'pending' ? 'amber' : currentBooking?.status == 'approved' ? 'indigo' : 'green'">
+                  :color="currentBooking?.status == 'pending' ? 'amber' : currentBooking?.status == 'approved' ? 'indigo' : currentBooking?.status == 'declined' ? 'red' : ''">
                   <span class="font-weight-bold"
-                    :class="currentBooking?.status == 'pending' ? 'text-amber-darken-2' : currentBooking?.status == 'approved' ? 'text-indigo-darken-2' : 'text-green-darken-2'">{{
+                    :class="currentBooking?.status == 'pending' ? 'text-amber-darken-2' : currentBooking?.status == 'approved' ? 'text-indigo-darken-2' : currentBooking?.status == 'declined' ? 'text-red-darken-2' : ''">{{
                       currentBooking?.status }}</span>
                 </v-chip>
                 <v-chip size="small"
-                  :color="currentBooking?.status == 'pending' ? 'amber' : currentBooking?.status == 'approved' ? 'indigo' : 'green'">
+                  :color="currentBooking?.status == 'pending' ? 'amber' : currentBooking?.status == 'approved' ? 'indigo' : currentBooking?.status == 'declined' ? 'red' : ''">
                   <v-icon
-                    :color="currentBooking?.status == 'pending' ? 'amber-darken-2' : currentBooking?.status == 'approved' ? 'indigo-darken-2' : 'green-darken-2'"
+                    :color="currentBooking?.status == 'pending' ? 'amber-darken-2' : currentBooking?.status == 'approved' ? 'indigo-darken-2' : currentBooking?.status == 'declined' ? 'red-darken-2' : ''"
                     class="mr-1">mdi-hand-coin</v-icon>
                   <span class="font-weight-bold"
-                    :class="currentBooking?.status == 'pending' ? 'text-amber-darken-2' : currentBooking?.status == 'approved' ? 'text-indigo-darken-2' : 'text-green-darken-2'">{{
+                    :class="currentBooking?.status == 'pending' ? 'text-amber-darken-2' : currentBooking?.status == 'approved' ? 'text-indigo-darken-2' : currentBooking?.status == 'declined' ? 'text-red-darken-2' : ''">{{
                       (currentBooking?.budget).toString().replace(/\B(?=(\d{3})+(?!\d))/g, ",") }}</span>
                 </v-chip>
               </v-card-text>
@@ -166,11 +144,15 @@
       </v-card-text>
       <v-card-actions>
         <v-spacer />
-        <v-btn @click="currentBooking.dialog = false" class="mr-3">Reject</v-btn>
+        <v-btn @click="() => {
+          currentBooking.dialog = false
+          acceptBooking.declineBooking(currentBooking)
+        }" class="mr-3">Decline</v-btn>
+
         <v-btn :disabled="profile.user?.acceptedBookings?.includes(currentBooking.id)" @click="() => {
           currentBooking.dialog = false
           acceptBooking.acceptBooking(currentBooking)
-        }" class="bg-indigo">Accept booking</v-btn>
+        }" class="bg-indigo">Accept</v-btn>
       </v-card-actions>
     </v-card>
   </v-dialog>

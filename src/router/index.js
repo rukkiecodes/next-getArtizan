@@ -61,8 +61,20 @@ const routes = [
     component: () => import('@/layouts/artisan/Default.vue'),
     children: [
       {
+        path: '',
+        component: () => import('@/views/artisan/Bookings.vue'),
+      },
+      {
+        path: 'overview',
+        component: () => import('@/views/artisan/Overview.vue'),
+      },
+      {
         path: 'bookings',
         component: () => import('@/views/artisan/Bookings.vue'),
+      },
+      {
+        path: 'subscription ',
+        component: () => import('@/views/artisan/Subscription.vue'),
       },
       {
         path: 'jobs',

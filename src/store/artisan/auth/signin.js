@@ -11,8 +11,8 @@ const snackbar = useAppStore()
 
 export const useSigninStore = defineStore('signin', {
   state: () => ({
-    email: '',
-    password: '',
+    email: 'rukkiecodes@gmail.com',
+    password: 'amagboro',
     loading: false
   }),
 
@@ -29,7 +29,7 @@ export const useSigninStore = defineStore('signin', {
             localStorage.getArtizanArtisanData = JSON.stringify(user.user)
 
             this.loading = false
-            router.push('/artisanDashboard/bookings')
+            router.push('/artisanDashboard/overview')
           })
           .catch((error) => {
             this.loading = false
