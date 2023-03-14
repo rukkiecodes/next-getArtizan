@@ -67,6 +67,10 @@ export const useAcceptArtizanBooking = defineStore('acceptArtizanBooking', {
                 acceptedBookings: arrayRemove(booking.id)
             })
 
+            await updateDoc(doc(db, 'artisan', userData.uid), {
+                declinedBookings: arrayUnion(booking.id)
+            })
+
             await updateDoc(doc(db, 'booking', booking.id), {
                 status: 'declined'
             })

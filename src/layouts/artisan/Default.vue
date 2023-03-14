@@ -31,5 +31,7 @@ onMounted(() => {
   job.getJobs()
   history.getHistory()
   status.getApproved()
+  status.getCompleted()
+  status.getDeclined()
 });
 </script>

@@ -13,7 +13,7 @@ export const useStatusStore = defineStore('artizanStatus', {
 
     actions: {
         async getPending() { },
-        
+
         async getApproved() {
             const userData = await JSON.parse(localStorage.getItem('getArtizanArtisanData'))
 
@@ -21,9 +21,21 @@ export const useStatusStore = defineStore('artizanStatus', {
 
             this.approved = exsistingJobs.acceptedBookings.length
         },
-        
-        async getCompleted() { },
-        
-        async getDeclined() { },
+
+        async getCompleted() {
+            const userData = await JSON.parse(localStorage.getItem('getArtizanArtisanData'))
+
+            const exsistingJobs = (await getDoc(doc(db, 'artisan', userData.uid))).data()
+
+            this.completed = exsistingJobs.completedBookings.length
+        },
+
+        async getDeclined() {
+            const userData = await JSON.parse(localStorage.getItem('getArtizanArtisanData'))
+
+            const exsistingJobs = (await getDoc(doc(db, 'artisan', userData.uid))).data()
+
+            this.declined = exsistingJobs.declinedBookings.length
+        },
     }
 })
