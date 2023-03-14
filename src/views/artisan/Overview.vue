@@ -4,32 +4,42 @@
     <v-card class="mt-5 rounded-xl" flat>
       <v-card-text>
         <v-row justify="space-between">
-          <v-col cols="12" sm="4">
+          <v-col cols="12" sm="3">
             <v-card class="d-flex justify-center" color="transparent" flat>
-              <v-progress-circular :model-value="overview.pendingCount" size="200" width="15" color="amber">
+              <v-progress-circular :model-value="status.pending" size="150" width="15" color="amber">
                 <div class="d-flex flex-column align-center">
                   <p class="text-body-1 text-center text-amber-darken-3">Pending</p>
-                  <span class="font-weight-bold text-h5 text-amber-darken-3">{{ overview.pendingCount }}</span>
+                  <span class="font-weight-bold text-h5 text-amber-darken-3">{{ status.pending }}</span>
                 </div>
               </v-progress-circular>
             </v-card>
           </v-col>
-          <v-col cols="12" sm="4">
+          <v-col cols="12" sm="3">
             <v-card class="d-flex justify-center" color="transparent" flat>
-              <v-progress-circular :model-value="overview.approvedCount" size="200" width="15" color="indigo">
+              <v-progress-circular :model-value="status.approved" size="150" width="15" color="indigo">
                 <div class="d-flex flex-column align-center">
                   <p class="text-body-1 text-center text-indigo-darken-3">Approved</p>
-                  <span class="font-weight-bold text-h5 text-indigo-darken-3">{{ overview.approvedCount }}</span>
+                  <span class="font-weight-bold text-h5 text-indigo-darken-3">{{ status.approved }}</span>
                 </div>
               </v-progress-circular>
             </v-card>
           </v-col>
-          <v-col cols="12" sm="4">
+          <v-col cols="12" sm="3">
             <v-card class="d-flex justify-center" color="transparent" flat>
-              <v-progress-circular :model-value="overview.completedCount" size="200" width="15" color="green">
+              <v-progress-circular :model-value="status.completed" size="150" width="15" color="green">
                 <div class="d-flex flex-column align-center">
                   <p class="text-body-1 text-center text-green-darken-3">Completed</p>
-                  <span class="font-weight-bold text-h5 text-green-darken-3">{{ overview.completedCount }}</span>
+                  <span class="font-weight-bold text-h5 text-green-darken-3">{{ status.completed }}</span>
+                </div>
+              </v-progress-circular>
+            </v-card>
+          </v-col>
+          <v-col cols="12" sm="3">
+            <v-card class="d-flex justify-center" color="transparent" flat>
+              <v-progress-circular :model-value="status.declined" size="150" width="15" color="red">
+                <div class="d-flex flex-column align-center">
+                  <p class="text-body-1 text-center text-red-darken-3">Declined</p>
+                  <span class="font-weight-bold text-h5 text-red-darken-3">{{ status.declined }}</span>
                 </div>
               </v-progress-circular>
             </v-card>
@@ -150,11 +160,13 @@ import { useuserOverviewStore } from "@/store/user/overview";
 import { useGetBookingStore } from "@/store/user/booking/getBookings";
 import { useArtizansStore } from '@/store/user/artizans'
 import { useHistoryStore } from '@/store/artisan/overview/history'
+import { useStatusStore } from '@/store/artisan/overview/status'
 
 const overview = ref(useuserOverviewStore());
 const booking = ref(useGetBookingStore());
 const artizan = ref(useArtizansStore())
 const history = ref(useHistoryStore())
+const status = ref(useStatusStore())
 
 const activeDialog = ref({
   dialog: false
