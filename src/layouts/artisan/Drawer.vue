@@ -47,9 +47,19 @@ const profile = useProfileStore();
 
 const routes = [
   {
+    title: "Overview",
+    icon: "mdi-view-dashboard",
+    to: "/artisanDashboard/overview",
+  },
+  {
     title: "Bookings",
     icon: "mdi-calendar",
     to: "/artisanDashboard/bookings",
+  },
+  {
+    title: "Subscription ",
+    icon: "mdi-calendar",
+    to: "/artisanDashboard/subscription ",
   },
   {
     title: "Jobs",

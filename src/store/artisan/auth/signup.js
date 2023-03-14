@@ -62,7 +62,7 @@ export const useSignupStore = defineStore('signup', {
                 createdAt: serverTimestamp()
               })
               this.loading = false
-              router.push('/artisanDashboard/bookings')
+              router.push('/artisanDashboard/overview')
             })
             .catch((error) => {
               this.loading = false

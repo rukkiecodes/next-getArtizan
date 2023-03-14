@@ -17,8 +17,6 @@ export const useArtizanGetBookingStore = defineStore('getArtizanBooking', {
 
     actions: {
         async getBookings() {
-            const userData = await JSON.parse(localStorage.getItem('getArtizanArtisanData'))
-
             const q = query(collection(db, "booking"), orderBy("createdAt", "desc"))
 
 
