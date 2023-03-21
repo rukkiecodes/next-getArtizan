@@ -1,9 +1,7 @@
 <template>
   <v-container>
-    <v-alert v-if="profile.user?.tier == 'not verified'" title="Email verification"
-      text="Please verify your email to continue using our services." type="warning" variant="tonal">
-    </v-alert>
-    <v-card v-else flat color="transparent" width="400" max-width="100%" class="mx-auto">
+    <v-card v-if="profile.user?.tier != 'not verified'" flat color="transparent" width="400" max-width="100%"
+      class="mx-auto">
       <v-card-text class="text-center">
         <v-avatar color="indigo" size="80">
           <v-img v-if="profile.user?.avatar" :src="profile.user?.avatar" cover />
@@ -107,7 +105,7 @@
         <v-btn @click="profile.updateProfile" :loading="profile.loading" class="bg-indigo" block>Save</v-btn>
       </v-card-actions>
 
-      <div v-if="profile.user?.tier == 'tier 1'">
+      <!-- <div v-if="profile.user?.tier == 'account verified'">
         <v-divider class="my-4" />
 
         <v-card-subtitle class="mb-2 font-weight-bold">Proof of Identity</v-card-subtitle>
@@ -135,7 +133,7 @@
             </v-card>
           </v-col>
         </v-row>
-      </div>
+      </div> -->
     </v-card>
   </v-navigation-drawer>
 </template>

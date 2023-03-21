@@ -4,6 +4,12 @@
     <Drawer />
 
     <v-main class="bg-indigo-lighten-5">
+      <v-container v-if="profile.user?.tier == 'not verified'">
+        <v-alert title="Email verification" text="Please verify your email to continue using our services." type="warning"
+          variant="tonal">
+          <v-btn variant="plain" class="ml-0 ml-sm-2" to="/artisanDashboard/profile">verify Email</v-btn>
+        </v-alert>
+      </v-container>
       <router-view />
     </v-main>
   </v-app>
