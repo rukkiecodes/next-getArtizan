@@ -37,8 +37,9 @@
               </v-chip>
             </v-card-text>
             <v-card-actions>
-              <v-btn @click="setCurrnetBooking(booking)" class="bg-indigo-lighten-5 text-body-2 text-indigo-accent-4"
-                block>View details</v-btn>
+              <v-btn @click="() => {
+                profile.user.tier == 'not verified' ? $router.push('/artisanDashboard/profile') : setCurrnetBooking(booking)
+              }" class="bg-indigo-lighten-5 text-body-2 text-indigo-accent-4" block>View details</v-btn>
             </v-card-actions>
           </v-card>
         </v-col>
