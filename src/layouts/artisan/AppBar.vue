@@ -15,7 +15,7 @@
       }}</span>
     </v-chip>
 
-    <v-btn @click="overview.drawer = true" class="hidden-lg-and-up">
+    <v-btn @click="overview.drawer = true" class="hidden-lg-and-up" icon>
       <v-icon>mdi-menu</v-icon>
     </v-btn>
   </v-app-bar>

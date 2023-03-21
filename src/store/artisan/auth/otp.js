@@ -40,13 +40,16 @@ export const useOTPStore = defineStore('otp', {
         },
 
         async resendOTP() {
-            this.loading = true
+            const data = await JSON.parse(localStorage.getArtizanArtisanPsudoData)
+            // console.log('resendOTP', data._id, profile.user?.email)
+            // this.loading = true
 
             await axios.post(process.env.NODE_ENV == 'production' ? 'https://feed.edu-portal.live/auth/resendVerification' : '/api/auth/resendVerification', {
-                email: profile.user?.email
+                email: profile.user?.email,
+                userId: data._id
             })
 
-            this.loading = false
+            // this.loading = false
             snackbar.snackbar = true
             snackbar.snackbarText = 'OTP sent successfully'
             snackbar.snackbarColor = 'success'
