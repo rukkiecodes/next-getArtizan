@@ -87,11 +87,11 @@
       <v-card-text>
         <v-select label="Gender" v-model="profile.gender" :items="['Male', 'Female']" density="compact"
           variant="underlined" color="indigo-accent-4" />
-        <v-text-field v-model="profile.stateOfResidence" label="State of residence" density="compact" variant="underlined"
+        <v-autocomplete v-model="profile.stateOfResidence" :items="app.location" label="State of residence" density="compact" variant="underlined"
           color="indigo-accent-4" />
         <v-text-field v-model="profile.LGA" label="Local government of residence" density="compact" variant="underlined"
           color="indigo-accent-4" />
-        <v-select v-model="profile.specialisation" :items="app.categories" label="Area Of specialisation"
+        <v-autocomplete v-model="profile.specialisation" :items="app.categories" label="Area Of specialisation"
           density="compact" variant="underlined" color="indigo-accent-4" />
 
         <v-card-subtitle class="mb-2 mt-5 pl-0">Guarantor Details</v-card-subtitle>

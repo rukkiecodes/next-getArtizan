@@ -10,7 +10,7 @@
           </v-btn>
         </v-col>
         <v-col v-for="booking in bookings.bookings" :key="booking.id" cols="12" sm="4" md="3">
-          <v-card>
+          <v-card rounded="xl">
             <v-card-text class="text-center">
               <v-avatar size="150">
                 <v-img
@@ -39,7 +39,7 @@
             <v-card-actions>
               <v-btn @click="() => {
                 profile.user.tier == 'not verified' ? $router.push('/artisanDashboard/profile') : setCurrnetBooking(booking)
-              }" class="bg-indigo-lighten-5 text-body-2 text-indigo-accent-4" block>View details</v-btn>
+              }" class="bg-indigo-lighten-5 text-body-2 text-indigo-accent-4" block rounded="xl">View details</v-btn>
             </v-card-actions>
           </v-card>
         </v-col>
@@ -57,7 +57,7 @@
 
   <!-- for active booking description -->
   <v-dialog v-model="currentBooking.dialog" width="1000" scrollable :fullscreen="fullscreen">
-    <v-card>
+    <v-card rounded="xl">
       <v-toolbar density="compact" color="transparent">
         <v-spacer />
         <v-btn @click="currentBooking.dialog = false" icon size="small">
@@ -148,12 +148,12 @@
         <v-btn @click="() => {
           currentBooking.dialog = false
           acceptBooking.declineBooking(currentBooking)
-        }" class="mr-3">Decline</v-btn>
+        }" class="mr-3 px-5" rounded="xl">Decline</v-btn>
 
         <v-btn :disabled="profile.user?.acceptedBookings?.includes(currentBooking.id)" @click="() => {
           currentBooking.dialog = false
           acceptBooking.acceptBooking(currentBooking)
-        }" class="bg-indigo">Accept</v-btn>
+        }" class="bg-indigo px-5" rounded="xl">Accept</v-btn>
       </v-card-actions>
     </v-card>
   </v-dialog>

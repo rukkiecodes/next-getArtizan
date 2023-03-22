@@ -4,7 +4,7 @@ import { defineStore } from 'pinia'
 import { useAppStore } from '@/store/app'
 import { useProfileStore } from '../profile/profile'
 
-import { collection, onSnapshot, orderBy, query } from 'firebase/firestore'
+import { collection, doc, getDoc, onSnapshot, orderBy, query, where } from 'firebase/firestore'
 import { db } from '@/plugins/firebase'
 
 const snackbar = useAppStore()
@@ -17,7 +17,11 @@ export const useArtizanGetBookingStore = defineStore('getArtizanBooking', {
 
     actions: {
         async getBookings() {
-            const q = query(collection(db, "booking"), orderBy("createdAt", "desc"))
+            const userData = await JSON.parse(localStorage.getItem('getArtizanArtisanData'))
+
+            let profile = await (await getDoc(doc(db, 'artisan', userData.uid))).data()
+
+            const q = query(collection(db, "booking"), orderBy("createdAt", "desc"), where('category', '==', profile.specialisation))
 
 
             const unsub = onSnapshot(q, snapshot => {
