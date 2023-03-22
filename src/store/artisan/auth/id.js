@@ -35,7 +35,7 @@ export const useIDStore = defineStore('id', {
             snackbar.snackbarColor = 'success'
 
             await updateDoc(doc(db, 'artisan', profile.user?.uid), {
-                tier: 'tier 1',
+                tier: 'account verified',
             })
         },
 

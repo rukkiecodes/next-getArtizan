@@ -69,7 +69,7 @@
                 (history?.budget).toString().replace(/\B(?=(\d{3})+(?!\d))/g, ",") }}</td>
               <td>
                 <v-chip
-                  :color="history?.status === 'pending' ? 'amber' : history?.status === 'approved' ? 'indigo' : 'green'">
+                  :color="history?.status === 'pending' ? 'amber' : history?.status === 'approved' ? 'indigo' : history?.status === 'declined' ? 'red' : 'green'">
                   <span class="font-weight-bold text-caption">{{ history?.status }}</span>
                 </v-chip>
               </td>

@@ -61,8 +61,10 @@
                             </v-list-item>
                         </v-card-text>
                         <v-card-actions>
-                            <v-btn @click="setCurrnetJob(jobs)" class="bg-indigo-lighten-4 text-body-2 text-indigo-accent-4"
-                                block>View Description</v-btn>
+                            <v-btn @click="() => {
+                                profile.user.tier == 'not verified' ? $router.push('/artisanDashboard/profile') : setCurrnetJob(jobs)
+                            }" class="bg-indigo-lighten-5 text-body-2 text-indigo-accent-4" block>View
+                                Description</v-btn>
                         </v-card-actions>
                     </v-card>
                 </v-col>
@@ -183,6 +185,7 @@ import { useArtizanGetJobsStore } from "@/store/artisan/booking/getJobs";
 import CurrentUserVue from "./CurrentUser.vue";
 import { useDisplay } from 'vuetify'
 import { ref, computed } from 'vue'
+import { useProfileStore } from "@/store/artisan/profile/profile";
 
 const jobs = ref(useArtizanGetJobsStore());
 
@@ -193,6 +196,8 @@ const photoDialog = ref(false)
 const currentJob = ref({
     dialog: false
 })
+
+const profile = ref(useProfileStore());
 
 const setCurrnetJob = (prop) => {
     currentJob.value = {

@@ -6,7 +6,7 @@
         <v-row justify="space-between">
           <v-col cols="12" sm="4">
             <v-card class="d-flex justify-center" color="transparent" flat>
-              <v-progress-circular :model-value="overview.pendingCount" size="200" width="15" color="amber">
+              <v-progress-circular :model-value="overview.pendingCount" size="150" width="15" color="amber">
                 <div class="d-flex flex-column align-center">
                   <p class="text-body-1 text-center text-amber-darken-3">Pending</p>
                   <span class="font-weight-bold text-h5 text-amber-darken-3">{{ overview.pendingCount }}</span>
@@ -16,7 +16,7 @@
           </v-col>
           <v-col cols="12" sm="4">
             <v-card class="d-flex justify-center" color="transparent" flat>
-              <v-progress-circular :model-value="overview.approvedCount" size="200" width="15" color="indigo">
+              <v-progress-circular :model-value="overview.approvedCount" size="150" width="15" color="indigo">
                 <div class="d-flex flex-column align-center">
                   <p class="text-body-1 text-center text-indigo-darken-3">Approved</p>
                   <span class="font-weight-bold text-h5 text-indigo-darken-3">{{ overview.approvedCount }}</span>
@@ -26,7 +26,7 @@
           </v-col>
           <v-col cols="12" sm="4">
             <v-card class="d-flex justify-center" color="transparent" flat>
-              <v-progress-circular :model-value="overview.completedCount" size="200" width="15" color="green">
+              <v-progress-circular :model-value="overview.completedCount" size="150" width="15" color="green">
                 <div class="d-flex flex-column align-center">
                   <p class="text-body-1 text-center text-green-darken-3">Completed</p>
                   <span class="font-weight-bold text-h5 text-green-darken-3">{{ overview.completedCount }}</span>

@@ -1,9 +1,7 @@
 <template>
   <v-container>
-    <v-alert v-if="profile.user?.tier == 'not verified'" title="Email verification"
-      text="Please verify your email to continue using our services." type="warning" variant="tonal">
-    </v-alert>
-    <v-card v-else flat color="transparent" width="400" max-width="100%" class="mx-auto">
+    <v-card v-if="profile.user?.tier != 'not verified'" flat color="transparent" width="400" max-width="100%"
+      class="mx-auto">
       <v-card-text class="text-center">
         <v-avatar color="indigo" size="80">
           <v-img v-if="profile.user?.avatar" :src="profile.user?.avatar" cover />
@@ -89,11 +87,11 @@
       <v-card-text>
         <v-select label="Gender" v-model="profile.gender" :items="['Male', 'Female']" density="compact"
           variant="underlined" color="indigo-accent-4" />
-        <v-text-field v-model="profile.stateOfResidence" label="State of residence" density="compact" variant="underlined"
+        <v-autocomplete v-model="profile.stateOfResidence" :items="app.location" label="State of residence" density="compact" variant="underlined"
           color="indigo-accent-4" />
         <v-text-field v-model="profile.LGA" label="Local government of residence" density="compact" variant="underlined"
           color="indigo-accent-4" />
-        <v-select v-model="profile.specialisation" :items="app.categories" label="Area Of specialisation"
+        <v-autocomplete v-model="profile.specialisation" :items="app.categories" label="Area Of specialisation"
           density="compact" variant="underlined" color="indigo-accent-4" />
 
         <v-card-subtitle class="mb-2 mt-5 pl-0">Guarantor Details</v-card-subtitle>
@@ -107,7 +105,7 @@
         <v-btn @click="profile.updateProfile" :loading="profile.loading" class="bg-indigo" block>Save</v-btn>
       </v-card-actions>
 
-      <div v-if="profile.user?.tier == 'tier 1'">
+      <!-- <div v-if="profile.user?.tier == 'account verified'">
         <v-divider class="my-4" />
 
         <v-card-subtitle class="mb-2 font-weight-bold">Proof of Identity</v-card-subtitle>
@@ -135,7 +133,7 @@
             </v-card>
           </v-col>
         </v-row>
-      </div>
+      </div> -->
     </v-card>
   </v-navigation-drawer>
 </template>
