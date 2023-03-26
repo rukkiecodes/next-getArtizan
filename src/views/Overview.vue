@@ -49,7 +49,7 @@
     </v-card>
 
     <v-card-subtitle class="mt-10 mb-5">Booking History</v-card-subtitle>
-    <v-table class="rounded-xl">
+    <v-table class="rounded-xl" v-if="history.history.length >= 1">
       <thead>
         <tr>
           <th class="text-left"> Time </th>
@@ -78,6 +78,9 @@
         </v-hover>
       </tbody>
     </v-table>
+    <v-sheet v-else class="d-flex justify-center align-center" height="200" rounded="xl">
+      <span>You do not have a history yet</span>
+    </v-sheet>
   </v-container>
 
   <v-dialog v-model="activeDialog.dialog" width="350" scrollable>

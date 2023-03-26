@@ -61,7 +61,7 @@ export const useProfileStore = defineStore('profile', {
                     () => {
                         getDownloadURL(uploadTask.snapshot.ref)
                             .then(downloadURL => {
-                                updateDoc(doc(db, 'users', this.user.uid), {
+                                updateDoc(doc(db, 'artizans', this.user.uid), {
                                     avatar: downloadURL,
                                     avatarLink: uploadTask.snapshot.ref.fullPath
                                 })
@@ -89,7 +89,7 @@ export const useProfileStore = defineStore('profile', {
         async updateProfile() {
             this.loading = true
 
-            await updateDoc(doc(db, 'users', this.user.uid), {
+            await updateDoc(doc(db, 'artizans', this.user.uid), {
                 gender: this.gender,
                 stateOfResidence: this.stateOfResidence,
                 LGA: this.LGA,
@@ -108,7 +108,7 @@ export const useProfileStore = defineStore('profile', {
         signoutUser() {
             signOut(auth)
             localStorage.removeItem('getArtizanArtisanData')
-            router.push('/artisan')
+            router.push('/')
         }
     }
 })

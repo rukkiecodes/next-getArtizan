@@ -14,34 +14,34 @@
       </v-card-text>
 
       <v-card-text class="text-center">
-        <v-card-title class="text-h5 text-grey-darken-4">
+        <v-card-title v-if="profile.user?.name" class="text-h5 text-grey-darken-4">
           {{ profile.user?.name }}
         </v-card-title>
-        <v-card-subtitle class="text-body-2 text-grey-darken-4">
+        <v-card-subtitle v-if="profile.user?.email" class="text-body-2 text-grey-darken-4">
           {{ profile.user?.email }}
         </v-card-subtitle>
       </v-card-text>
-      <v-card-text class="text-center">
+      <v-card-text v-if="profile.user?.gender" class="text-center">
         <v-card-subtitle class="px-0 text-caption">Gender</v-card-subtitle>
         {{ profile.user?.gender }}
       </v-card-text>
-      <v-card-text class="text-center">
+      <v-card-text v-if="profile.user?.stateOfResidence" class="text-center">
         <v-card-subtitle class="px-0 text-caption">State Of Residence</v-card-subtitle>
         {{ profile.user?.stateOfResidence }}
       </v-card-text>
-      <v-card-text class="text-center">
+      <v-card-text v-if="profile.user?.LGA" class="text-center">
         <v-card-subtitle class="px-0 text-caption">Local Government Area</v-card-subtitle>
         {{ profile.user?.LGA }}
       </v-card-text>
-      <v-card-text class="text-center">
+      <v-card-text v-if="profile.user?.specialisation" class="text-center">
         <v-card-subtitle class="px-0 text-caption">Area of specialisation</v-card-subtitle>
         {{ profile.user?.specialisation }}
       </v-card-text>
-      <v-card-text class="text-center">
+      <v-card-text v-if="profile.user?.guarantorName" class="text-center">
         <v-card-subtitle class="px-0 text-caption">Guarantor Name</v-card-subtitle>
         {{ profile.user?.guarantorName }}
       </v-card-text>
-      <v-card-text class="text-center">
+      <v-card-text v-if="profile.user?.guarantorPhone" class="text-center">
         <v-card-subtitle class="px-0 text-caption">Guarantor Phone</v-card-subtitle>
         {{ profile.user?.guarantorPhone }}
       </v-card-text>
