@@ -57,26 +57,26 @@ const routes = [
     icon: "mdi-view-dashboard",
     to: "/dashboard/overview",
   },
-  {
-    title: "Bookings",
-    icon: "mdi-calendar",
-    to: "/dashboard/bookings",
-  },
-  {
-    title: "Subscription ",
-    icon: "mdi-clock-time-eight",
-    to: "/dashboard/subscription ",
-  },
-  {
-    title: "Jobs",
-    icon: "mdi-briefcase",
-    to: "/dashboard/jobs",
-  },
-  {
-    title: "Profile",
-    icon: "mdi-account",
-    to: "/dashboard/profile",
-  },
+  // {
+  //   title: "Bookings",
+  //   icon: "mdi-calendar",
+  //   to: "/dashboard/bookings",
+  // },
+  // {
+  //   title: "Subscription ",
+  //   icon: "mdi-clock-time-eight",
+  //   to: "/dashboard/subscription ",
+  // },
+  // {
+  //   title: "Jobs",
+  //   icon: "mdi-briefcase",
+  //   to: "/dashboard/jobs",
+  // },
+  // {
+  //   title: "Profile",
+  //   icon: "mdi-account",
+  //   to: "/dashboard/profile",
+  // },
 ];
 
 onMounted(() => {

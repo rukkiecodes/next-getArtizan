@@ -24,28 +24,28 @@ const routes = [
     children: [
       {
         path: '',
-        component: () => import('@/views/Bookings.vue'),
+        component: () => import('@/views/Overview.vue'),
       },
       {
         path: 'overview',
         component: () => import('@/views/Overview.vue'),
       },
-      {
-        path: 'bookings',
-        component: () => import('@/views/Bookings.vue'),
-      },
-      {
-        path: 'subscription ',
-        component: () => import('@/views/Subscription.vue'),
-      },
-      {
-        path: 'jobs',
-        component: () => import('@/views/Jobs.vue'),
-      },
-      {
-        path: 'profile',
-        component: () => import('@/views/Profile.vue'),
-      },
+      // {
+      //   path: 'bookings',
+      //   component: () => import('@/views/Bookings.vue'),
+      // },
+      // {
+      //   path: 'subscription ',
+      //   component: () => import('@/views/Subscription.vue'),
+      // },
+      // {
+      //   path: 'jobs',
+      //   component: () => import('@/views/Jobs.vue'),
+      // },
+      // {
+      //   path: 'profile',
+      //   component: () => import('@/views/Profile.vue'),
+      // },
     ]
   }
 ]

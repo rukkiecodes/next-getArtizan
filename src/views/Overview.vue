@@ -156,15 +156,9 @@
   
 <script setup>
 import { ref } from "vue";
-import { useuserOverviewStore } from "@/store/user/overview";
-import { useGetBookingStore } from "@/store/user/booking/getBookings";
-import { useArtizansStore } from '@/store/user/artizans'
 import { useHistoryStore } from '@/store/overview/history'
 import { useStatusStore } from '@/store/overview/status'
 
-const overview = ref(useuserOverviewStore());
-const booking = ref(useGetBookingStore());
-const artizan = ref(useArtizansStore())
 const history = ref(useHistoryStore())
 const status = ref(useStatusStore())
 

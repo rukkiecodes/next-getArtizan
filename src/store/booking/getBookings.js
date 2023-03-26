@@ -17,24 +17,24 @@ export const useArtizanGetBookingStore = defineStore('getArtizanBooking', {
 
     actions: {
         async getBookings() {
-            const userData = await JSON.parse(localStorage.getItem('getArtizanArtisanData'))
+            // const userData = await JSON.parse(localStorage.getItem('getArtizanArtisanData'))
 
-            let profile = await (await getDoc(doc(db, 'users', userData.uid))).data()
+            // let profile = await (await getDoc(doc(db, 'users', userData.uid))).data()
 
-            const q = query(collection(db, "booking"), orderBy("createdAt", "desc"), where('category', '==', profile.specialisation))
+            // const q = query(collection(db, "booking"), orderBy("createdAt", "desc"), where('category', '==', profile.specialisation))
 
 
-            const unsub = onSnapshot(q, snapshot => {
-                this.bookings = []
-                snapshot.forEach(doc => {
-                    this.bookings.push({
-                        id: doc.id,
-                        ...doc.data()
-                    })
-                })
-            })
+            // const unsub = onSnapshot(q, snapshot => {
+            //     this.bookings = []
+            //     snapshot.forEach(doc => {
+            //         this.bookings.push({
+            //             id: doc.id,
+            //             ...doc.data()
+            //         })
+            //     })
+            // })
 
-            return unsub
+            // return unsub
         }
     }
 })

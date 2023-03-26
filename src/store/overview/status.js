@@ -15,27 +15,27 @@ export const useStatusStore = defineStore('artizanStatus', {
         async getPending() { },
 
         async getApproved() {
-            const userData = await JSON.parse(localStorage.getItem('getArtizanArtisanData'))
+            // const userData = await JSON.parse(localStorage.getItem('getArtizanArtisanData'))
 
-            const exsistingJobs = (await getDoc(doc(db, 'users', userData.uid))).data()
+            // const exsistingJobs = (await getDoc(doc(db, 'users', userData.uid))).data()
 
-            this.approved = exsistingJobs.acceptedBookings.length
+            // this.approved = exsistingJobs.acceptedBookings.length
         },
 
         async getCompleted() {
-            const userData = await JSON.parse(localStorage.getItem('getArtizanArtisanData'))
+            // const userData = await JSON.parse(localStorage.getItem('getArtizanArtisanData'))
 
-            const exsistingJobs = (await getDoc(doc(db, 'users', userData.uid))).data()
+            // const exsistingJobs = (await getDoc(doc(db, 'users', userData.uid))).data()
 
-            this.completed = exsistingJobs.completedBookings.length
+            // this.completed = exsistingJobs.completedBookings.length
         },
 
         async getDeclined() {
-            const userData = await JSON.parse(localStorage.getItem('getArtizanArtisanData'))
+            // const userData = await JSON.parse(localStorage.getItem('getArtizanArtisanData'))
 
-            const exsistingJobs = (await getDoc(doc(db, 'users', userData.uid))).data()
+            // const exsistingJobs = (await getDoc(doc(db, 'users', userData.uid))).data()
 
-            this.declined = exsistingJobs.declinedBookings.length
+            // this.declined = exsistingJobs.declinedBookings.length
         },
     }
 })
