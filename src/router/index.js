@@ -2,87 +2,49 @@
 import { createRouter, createWebHistory } from 'vue-router'
 
 const routes = [
-  // User Routes
   {
     path: '/',
-    component: () => import('@/layouts/user/auth/Default.vue'),
+    component: () => import('@/layouts/auth/Default.vue'),
     children: [
       {
         path: '',
-        component: () => import('@/views/user/auth/Signup.vue'),
+        name: 'Signup',
+        component: () => import('@/views/auth/Signup.vue'),
       },
       {
         path: 'signin',
-        component: () => import('@/views/user/auth/Signin.vue'),
+        name: 'Signin',
+        component: () => import('@/views/auth/Signin.vue'),
       },
     ],
   },
   {
     path: '/dashboard',
-    component: () => import('@/layouts/user/Default.vue'),
+    component: () => import('@/layouts/Default.vue'),
     children: [
       {
         path: '',
-        component: () => import('@/views/user/App.vue'),
+        component: () => import('@/views/Overview.vue'),
       },
       {
         path: 'overview',
-        component: () => import('@/views/user/App.vue'),
+        component: () => import('@/views/Overview.vue'),
       },
       {
         path: 'bookings',
-        component: () => import('@/views/user/Bookings.vue'),
-      },
-      {
-        path: 'profile',
-        component: () => import('@/views/user/Profile.vue'),
-      },
-    ]
-  },
-  // Artisan Routes
-  {
-    path: '/artisan',
-    component: () => import('@/layouts/artisan/auth/Default.vue'),
-    children: [
-      {
-        path: '',
-        name: 'Signup',
-        component: () => import('@/views/artisan/auth/Signup.vue'),
-      },
-      {
-        path: 'signin',
-        name: 'Signin',
-        component: () => import('@/views/artisan/auth/Signin.vue'),
-      },
-    ],
-  },
-  {
-    path: '/artisanDashboard',
-    component: () => import('@/layouts/artisan/Default.vue'),
-    children: [
-      {
-        path: '',
-        component: () => import('@/views/artisan/Bookings.vue'),
-      },
-      {
-        path: 'overview',
-        component: () => import('@/views/artisan/Overview.vue'),
-      },
-      {
-        path: 'bookings',
-        component: () => import('@/views/artisan/Bookings.vue'),
+        component: () => import('@/views/Bookings.vue'),
       },
       {
         path: 'subscription ',
-        component: () => import('@/views/artisan/Subscription.vue'),
+        component: () => import('@/views/Subscription.vue'),
       },
       {
         path: 'jobs',
-        component: () => import('@/views/artisan/Jobs.vue'),
+        component: () => import('@/views/Jobs.vue'),
       },
       {
         path: 'profile',
-        component: () => import('@/views/artisan/Profile.vue'),
+        component: () => import('@/views/Profile.vue'),
       },
     ]
   }
