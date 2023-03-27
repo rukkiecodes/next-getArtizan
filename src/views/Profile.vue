@@ -22,7 +22,7 @@
         </v-card-subtitle>
       </v-card-text>
       <v-card-text v-if="profile.user?.gender" class="text-center">
-        <v-card-subtitle class="px-0 text-caption">Gennder</v-card-subtitle>
+        <v-card-subtitle class="px-0 text-caption">Gender</v-card-subtitle>
         {{ profile.user?.gender }}
       </v-card-text>
       <v-card-text v-if="profile.user?.stateOfResidence" class="text-center">
