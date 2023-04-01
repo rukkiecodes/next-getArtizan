@@ -26,7 +26,7 @@ export const useProfileStore = defineStore('profile', {
 
     actions: {
         async getProfile() {
-            const userData = await JSON.parse(localStorage.getItem('getArtizanArtisanData'))
+            const userData = await JSON.parse(localStorage.getArtizanArtisanData)
 
             // Get profile from real time from firestore
             const unsub = onSnapshot(doc(db, 'artizans', userData.uid), (doc) => {
@@ -89,14 +89,17 @@ export const useProfileStore = defineStore('profile', {
         async updateProfile() {
             this.loading = true
 
-            await updateDoc(doc(db, 'artizans', this.user.uid), {
-                gender: this.gender,
-                stateOfResidence: this.stateOfResidence,
-                LGA: this.LGA,
-                specialisation: this.specialisation,
-                guarantorName: this.guarantorName,
-                guarantorPhone: this.guarantorPhone,
-            })
+            const user = await JSON.parse(localStorage.getArtizanArtisanData)
+
+            await updateDoc(doc(db, 'artizans', user.uid),
+                {
+                    gender: this.gender != undefined ? this.gender : '',
+                    stateOfResidence: this.stateOfResidence != undefined ? this.stateOfResidence : '',
+                    LGA: this.LGA != undefined ? this.LGA : '',
+                    specialisation: this.specialisation != undefined ? this.specialisation : '',
+                    guarantorName: this.guarantorName != undefined ? this.guarantorName : '',
+                    guarantorPhone: this.guarantorPhone != undefined ? this.guarantorPhone : '',
+                })
 
             this.loading = false
 
