@@ -1,6 +1,6 @@
 <template>
   <v-container>
-    <v-card v-if="profile.user?.tier != 'not verified'" flat color="transparent" width="400" max-width="100%"
+    <v-card v-if="profile.user?.tier != 'not verified' && profile.user?.tier != undefined" flat color="transparent" width="400" max-width="100%"
       class="mx-auto">
       <v-card-text class="text-center">
         <v-avatar color="indigo" size="80">
@@ -53,7 +53,7 @@
       </v-card-actions>
     </v-card>
 
-    <v-card v-if="profile.user?.tier == 'not verified'" flat color="white" width="400" max-width="100%"
+    <v-card v-if="profile.user?.tier == 'not verified' || profile.user?.tier == undefined" flat color="white" width="400" max-width="100%"
       class="mx-auto mt-16">
       <v-card-text class="pb-0">
         <v-text-field v-model="otp.otp" label="Enter OTP" variant="outlined" />
@@ -67,7 +67,7 @@
     </v-card>
   </v-container>
 
-  <v-navigation-drawer v-model="drawer" v-if="profile.user?.tier != 'not verified'" location="right" width="350"
+  <v-navigation-drawer v-model="drawer" v-if="profile.user?.tier != 'not verified' && profile.user?.tier != undefined" location="right" width="350"
     border="0" color="indigo-lighten-5">
     <v-card class="ma-4 rounded-lg" :elevation="flat" :color="color">
       <v-card-title class="text-grey-darken-4 text-body-1">Edit your profile</v-card-title>
