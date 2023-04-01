@@ -1,12 +1,8 @@
-
-
-
-
-
-
 <template>
-    <v-chip size="small" :color="profile.user?.tier == 'not verified' ? 'red' : 'green'" class="text-capitalize">{{
-        profile.user?.tier }}</v-chip>
+    <v-chip size="small"
+        :color="(profile.user?.tier == 'not verified' || profile.user?.tier == undefined) ? 'red' : 'green'"
+        class="text-capitalize">{{
+            profile.user?.tier != undefined ? profile.user?.tier : 'not verified' }}</v-chip>
 </template>
 <script setup>
 import { useProfileStore } from '@/store/profile/profile';

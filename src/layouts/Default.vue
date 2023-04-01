@@ -4,7 +4,7 @@
     <Drawer />
 
     <v-main class="bg-indigo-lighten-5">
-      <v-container v-if="profile.user?.tier == 'not verified'">
+      <v-container v-if="profile.user?.tier == 'not verified' || profile.user?.tier == undefined">
         <v-alert title="Email verification" text="Please verify your email to continue using our services." type="warning"
           variant="tonal">
           <v-btn variant="plain" class="ml-0 ml-sm-2" to="/dashboard/profile">verify Email</v-btn>
