@@ -12,7 +12,7 @@ export const useHistoryStore = defineStore('artizanHistory', {
         async getHistory() {
             const userData = await JSON.parse(localStorage.getItem('getArtizanArtisanData'))
 
-            const unsub = onSnapshot(collection(db, 'users', userData.uid, 'history'), (querySnapshot) => {
+            const unsub = onSnapshot(collection(db, 'artizans', userData.uid, 'history'), (querySnapshot) => {
                 this.history = []
 
                 querySnapshot.forEach((doc) => {
