@@ -21,8 +21,6 @@ export const useArtizanGetBookingStore = defineStore('getArtizanBooking', {
 
             let profile = await (await getDoc(doc(db, 'artizans', userData.uid))).data()
 
-            // console.log(profile)
-
             const q = query(collection(db, "booking"), orderBy("createdAt", "desc"), where('category', '==', profile.specialisation))
 
 

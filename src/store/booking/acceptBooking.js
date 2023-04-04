@@ -19,13 +19,13 @@ export const useAcceptArtizanBooking = defineStore('acceptArtizanBooking', {
         async acceptBooking(booking) {
             const userData = await JSON.parse(localStorage.getItem('getArtizanArtisanData'))
 
-            let artizan = await (await getDoc(doc(db, 'users', userData.uid))).data()
+            let artizan = await (await getDoc(doc(db, 'artizans', userData.uid))).data()
 
             await setDoc(doc(db, 'booking', booking.id, 'accepted', userData.uid), {
                 ...artizan,
             })
 
-            await updateDoc(doc(db, 'users', userData.uid), {
+            await updateDoc(doc(db, 'artizans', userData.uid), {
                 acceptedBookings: arrayUnion(booking.id)
             })
 
@@ -33,14 +33,14 @@ export const useAcceptArtizanBooking = defineStore('acceptArtizanBooking', {
                 status: 'approved'
             })
 
-            await addDoc(collection(db, 'user', booking.customer, 'history'), {
+            await addDoc(collection(db, 'users', booking.customer, 'history'), {
                 ...booking,
                 artizan: artizan?.uid,
                 type: 'accept booking',
                 createdAt: serverTimestamp()
             })
 
-            await addDoc(collection(db, 'users', artizan.uid, 'history'), {
+            await addDoc(collection(db, 'artizans', artizan.uid, 'history'), {
                 ...booking,
                 customer: booking?.customer,
                 type: 'accept booking',
@@ -55,7 +55,7 @@ export const useAcceptArtizanBooking = defineStore('acceptArtizanBooking', {
         async declineBooking(booking) {
             const userData = await JSON.parse(localStorage.getItem('getArtizanArtisanData'))
 
-            let artizan = await (await getDoc(doc(db, 'users', userData.uid))).data()
+            let artizan = await (await getDoc(doc(db, 'artizans', userData.uid))).data()
 
             await deleteDoc(doc(db, 'booking', booking.id, 'accepted', userData.uid))
 
@@ -63,11 +63,11 @@ export const useAcceptArtizanBooking = defineStore('acceptArtizanBooking', {
                 ...artizan,
             })
 
-            await updateDoc(doc(db, 'users', userData.uid), {
+            await updateDoc(doc(db, 'artizans', userData.uid), {
                 acceptedBookings: arrayRemove(booking.id)
             })
 
-            await updateDoc(doc(db, 'users', userData.uid), {
+            await updateDoc(doc(db, 'artizans', userData.uid), {
                 declinedBookings: arrayUnion(booking.id)
             })
 
@@ -75,14 +75,14 @@ export const useAcceptArtizanBooking = defineStore('acceptArtizanBooking', {
                 status: 'declined'
             })
 
-            await addDoc(collection(db, 'user', booking.customer, 'history'), {
+            await addDoc(collection(db, 'users', booking.customer, 'history'), {
                 ...booking,
                 artizan: artizan?.uid,
                 type: 'decline booking',
                 createdAt: serverTimestamp()
             })
 
-            await addDoc(collection(db, 'users', artizan.uid, 'history'), {
+            await addDoc(collection(db, 'artizans', artizan.uid, 'history'), {
                 ...booking,
                 customer: booking?.customer,
                 type: 'decline booking',
