@@ -19,9 +19,13 @@ export const useArtizanGetJobsStore = defineStore('getArtizanJobs', {
         async getJobs() {
             const userData = await JSON.parse(localStorage.getItem('getArtizanArtisanData'))
 
-            const exsistingJobs = (await getDoc(doc(db, 'artizans', userData.uid))).data().acceptedBookings
+            const exsistingJobs = (await getDoc(doc(db, 'artizans', userData.uid))).data()
 
-            exsistingJobs.forEach(data => {
+            const acceptedBookings = exsistingJobs.acceptedBookings
+
+            if (acceptedBookings == undefined) return
+
+            acceptedBookings.forEach(data => {
                 getDoc(doc(db, 'booking', data)).then((doc) => {
                     this.jobs.push({
                         id: doc.id,

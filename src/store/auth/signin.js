@@ -7,6 +7,7 @@ import { useAppStore } from '../app'
 
 import router from '@/router'
 import axios from 'axios'
+import { collection, doc, getDoc, getDocs, query, where } from 'firebase/firestore'
 
 const snackbar = useAppStore()
 
@@ -26,12 +27,7 @@ export const useSigninStore = defineStore('signin', {
       } else {
         this.loading = true
 
-        await axios.post(process.env.NODE_ENV == 'production' ? 'https://feed.edu-portal.live/auth/signin' : '/api/auth/signin', {
-          email: this.email,
-          password: this.password
-        }).then((res) => {
-          localStorage.getArtizanArtisanPsudoData = JSON.stringify(res.data.user)
-          
+        const signin = () => {
           signInWithEmailAndPassword(auth, this.email, this.password)
             .then(async user => {
               localStorage.getArtizanArtisanData = JSON.stringify(user.user)
@@ -81,7 +77,35 @@ export const useSigninStore = defineStore('signin', {
                 snackbar.snackbarColor = 'red'
               }
             });
-        })
+        }
+
+        // const user = await query(collection(doc(db, 'artizans'), where('email', '==', this.email)))
+        const q = query(collection(db, 'artizans'), where('email', '==', this.email))
+
+        const querySnapshot = await getDocs(q)
+
+        querySnapshot.forEach(async doc => {
+          let user = doc.data()
+
+          if (user?.tier == 'account verified') {
+            signin()
+          }
+          else {
+            await axios.post(process.env.NODE_ENV == 'production' ? 'https://feed.edu-portal.live/auth/signin' : '/api/auth/signin', {
+              email: this.email,
+              password: this.password
+            }).then((res) => {
+              localStorage.getArtizanArtisanPsudoData = JSON.stringify(res.data.user)
+
+              // signin user
+              signin()
+            }).catch(error => {
+              snackbar.snackbar = true
+              snackbar.snackbarText = 'Error signing in'
+              snackbar.snackbarColor = 'red'
+            })
+          }
+        });
       }
     }
   }

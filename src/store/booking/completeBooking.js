@@ -22,7 +22,7 @@ export const useCompleteArtizanBooking = defineStore('completeArtizanBooking', {
                 artizanCount: increment(1)
             })
 
-            await addDoc(collection(db, 'user', booking.customer, 'history'), {
+            await addDoc(collection(db, 'users', booking.customer, 'history'), {
                 ...booking,
                 artizan: artizan?.id,
                 type: 'completeBooking',

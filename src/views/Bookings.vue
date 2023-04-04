@@ -3,12 +3,6 @@
     :class="bookings.bookings.length <= 0 ? 'd-flex align-center' : ''">
     <v-container :class="bookings.bookings.length <= 0 ? 'd-flex justify-center' : ''">
       <v-row v-if="bookings.bookings.length > 0">
-        <v-col cols="12">
-          <v-btn @click="bookings.getBookings" class="bg-indigo rounded-pill text-capitalize" flat>
-            <v-icon class="mr-2">mdi-reload</v-icon>
-            Refresh List
-          </v-btn>
-        </v-col>
         <v-col v-for="booking in bookings.bookings" :key="booking.id" cols="12" sm="4" md="3">
           <v-card rounded="xl">
             <v-card-text class="text-center">
@@ -137,7 +131,6 @@
               <v-card-text class="text-body-1 text-grey-darken-3">{{ currentBooking?.description }}</v-card-text>
             </v-card>
           </v-col>
-          <v-divider vertical />
           <v-col cols="12" md="4">
             <CurrentUserVue :user="currentBooking" />
           </v-col>
