@@ -14,6 +14,5 @@ const app = useAppStore()
 
 onMounted(() => {
   app.getCategories()
-  app.getLocation()
 })
 </script>

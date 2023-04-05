@@ -1,7 +1,7 @@
 <template>
   <v-container>
-    <v-card v-if="profile.user?.tier != 'not verified' && profile.user?.tier != undefined" flat color="transparent" width="400" max-width="100%"
-      class="mx-auto">
+    <v-card v-if="profile.user?.tier != 'not verified' && profile.user?.tier != undefined" flat color="transparent"
+      width="400" max-width="100%" class="mx-auto">
       <v-card-text class="text-center">
         <v-avatar color="indigo" size="80">
           <v-img v-if="profile.user?.avatar" :src="profile.user?.avatar" cover />
@@ -53,8 +53,8 @@
       </v-card-actions>
     </v-card>
 
-    <v-card v-if="profile.user?.tier == 'not verified' || profile.user?.tier == undefined" flat color="white" width="400" max-width="100%"
-      class="mx-auto mt-16">
+    <v-card v-if="profile.user?.tier == 'not verified' || profile.user?.tier == undefined" flat color="white" width="400"
+      max-width="100%" class="mx-auto mt-16">
       <v-card-text class="pb-0">
         <v-text-field v-model="otp.otp" label="Enter OTP" variant="outlined" />
       </v-card-text>
@@ -67,12 +67,12 @@
     </v-card>
   </v-container>
 
-  <v-navigation-drawer v-model="drawer" v-if="profile.user?.tier != 'not verified' && profile.user?.tier != undefined" location="right" width="350"
-    border="0" color="indigo-lighten-5">
+  <v-navigation-drawer v-model="drawer" v-if="profile.user?.tier != 'not verified' && profile.user?.tier != undefined"
+    location="right" width="350" border="0" color="indigo-lighten-5">
     <v-card class="ma-4 rounded-lg" :elevation="flat" :color="color">
       <v-card-title class="text-grey-darken-4 text-body-1">Edit your profile</v-card-title>
       <v-card-text class="text-center my-4">
-        <v-avatar @click="clickOnInput" color="indigo" size="80" style="cursor: pointer;">
+        <v-avatar @click="clickOnInput" color="indigo" size="80" style="cursor: pointer">
           <v-img v-if="profile.user?.avatar" :src="profile.user?.avatar" cover />
           <v-icon v-else size="30">mdi-account</v-icon>
         </v-avatar>
@@ -87,10 +87,14 @@
       <v-card-text>
         <v-select label="Gender" v-model="profile.gender" :items="['Male', 'Female']" density="compact"
           variant="underlined" color="indigo-accent-4" />
-        <v-autocomplete v-model="profile.stateOfResidence" :items="app.location" label="State of residence" density="compact" variant="underlined"
-          color="indigo-accent-4" />
-        <v-text-field v-model="profile.LGA" label="Local government of residence" density="compact" variant="underlined"
-          color="indigo-accent-4" />
+
+        <v-autocomplete @update:model-value="e => currentState(e)" v-model="profile.stateOfResidence"
+          :items="app.location" item-title="state" item-value="state" label="State of residence" density="compact"
+          variant="underlined" color="indigo-accent-4" />
+
+        <v-autocomplete v-model="profile.LGA" :items="lga" label="Local government of residence" density="compact"
+          variant="underlined" color="indigo-accent-4" />
+
         <v-autocomplete v-model="profile.specialisation" :items="app.categories" label="Area Of specialisation"
           density="compact" variant="underlined" color="indigo-accent-4" />
 
@@ -139,75 +143,81 @@
 </template>
 
 <script setup>
-import { ref, onMounted, computed } from "vue";
-import { useProfileStore } from "@/store/profile/profile";
-import { useOTPStore } from "@/store/auth/otp";
-import { useIDStore } from "@/store/auth/id";
-import { useAppStore } from "@/store/app";
-import { useDisplay } from "vuetify";
-import Tier from "@/components/Tier.vue";
+import { ref, onMounted, computed } from "vue"
+import { useProfileStore } from "@/store/profile/profile"
+import { useOTPStore } from "@/store/auth/otp"
+import { useIDStore } from "@/store/auth/id"
+import { useAppStore } from "@/store/app"
+import { useDisplay } from "vuetify"
+import Tier from "@/components/Tier.vue"
 
-const { name } = useDisplay();
+const { name } = useDisplay()
 
-const profile = ref(useProfileStore());
-const app = ref(useAppStore());
-const drawer = ref(true);
-const otp = ref(useOTPStore());
-const id = ref(useIDStore());
+const profile = ref(useProfileStore())
+const app = ref(useAppStore())
+const drawer = ref(true)
+const otp = ref(useOTPStore())
+const id = ref(useIDStore())
+
+let lga = ref([])
 
 const clickOnInput = () => {
-  document.querySelector("#avatarInput").click();
-};
+  document.querySelector("#avatarInput").click()
+}
 
 onMounted(() => {
-  profile.value.gender = profile.value.user?.gender;
-  profile.value.stateOfResidence = profile.value.user?.stateOfResidence;
-  profile.value.LGA = profile.value.user?.LGA;
-  profile.value.specialisation = profile.value.user?.specialisation;
-  profile.value.guarantorName = profile.value.user?.guarantorName;
-  profile.value.guarantorPhone = profile.value.user?.guarantorPhone;
-});
+  profile.value.gender = profile.value.user?.gender
+  profile.value.stateOfResidence = profile.value.user?.stateOfResidence
+  profile.value.LGA = profile.value.user?.LGA
+  profile.value.specialisation = profile.value.user?.specialisation
+  profile.value.guarantorName = profile.value.user?.guarantorName
+  profile.value.guarantorPhone = profile.value.user?.guarantorPhone
+})
 
 const setAvatar = (e) => {
-  profile.value.file = e;
-  profile.value.updateAvatar();
-};
+  profile.value.file = e
+  profile.value.updateAvatar()
+}
+
+const currentState = e => {
+  let currnetLga = app.value.location.filter(obj => obj.state === e)
+  let object = { ...currnetLga }
+  lga = object[0].lgas
+}
 
 const flat = computed(() => {
-  // name is reactive and
-  // must use .value
   switch (name.value) {
     case "xs":
-      return 0;
+      return 0
     case "sm":
-      return 0;
+      return 0
     case "md":
-      return 0;
+      return 0
     case "lg":
-      return 5;
+      return 5
     case "xl":
-      return 5;
+      return 5
   }
 
-  return undefined;
-});
+  return undefined
+})
 
 const color = computed(() => {
   // name is reactive and
   // must use .value
   switch (name.value) {
     case "xs":
-      return 'indigo-lighten-5';
+      return 'indigo-lighten-5'
     case "sm":
-      return 'indigo-lighten-5';
+      return 'indigo-lighten-5'
     case "md":
-      return 'indigo-lighten-5';
+      return 'indigo-lighten-5'
     case "lg":
-      return 'white';
+      return 'white'
     case "xl":
-      return 'white';
+      return 'white'
   }
 
-  return undefined;
-});
+  return undefined
+})
 </script>

@@ -69,7 +69,6 @@ onMounted(() => {
   status.getCompleted()
   status.getDeclined()
   app.getCategories()
-  app.getLocation()
 });
 
 const updateSpeciality = async () => {

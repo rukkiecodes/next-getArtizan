@@ -3,13 +3,15 @@ import { db } from '@/plugins/firebase'
 import { collection, onSnapshot } from 'firebase/firestore'
 import { defineStore } from 'pinia'
 
+import states from './states'
+
 export const useAppStore = defineStore('app', {
   state: () => ({
     snackbar: false,
     snackbarText: 'jknlkn;lkj;l',
     snackbarColor: 'indigo',
     categories: [],
-    location: []
+    location: states
   }),
 
   actions: {
@@ -23,16 +25,5 @@ export const useAppStore = defineStore('app', {
 
       return unsub
     },
-
-    getLocation() {
-      const unsub = onSnapshot(collection(db, 'location'), (querySnapshot) => {
-        this.location = []
-        querySnapshot.forEach((doc) => {
-          this.location.push(...doc.data().categories)
-        })
-      })
-
-      return unsub
-    }
   }
 })
