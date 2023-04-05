@@ -4,7 +4,7 @@
         <v-container :class="jobs.jobs.length <= 0 ? 'd-flex justify-center' : ''">
             <v-row v-if="jobs.jobs.length > 0">
                 <v-col v-for="jobs in jobs.jobs" :key="jobs.id" cols="12" sm="4" md="3">
-                    <v-card>
+                    <v-card rounded="xl">
                         <v-card-text class="text-center">
                             <v-avatar size="150">
                                 <v-img
@@ -40,8 +40,8 @@
                             <v-list-item density="compact">
                                 <v-list-item-subtitle class="text-caption">Location</v-list-item-subtitle>
                                 <v-list-item-title class="text-grey-darken-4 text-body-2 font-weight-bold">{{
-                                    jobs?.location
-                                }}</v-list-item-title>
+                                    jobs?.location.lga
+                                }}, {{ jobs?.location.state }}</v-list-item-title>
                             </v-list-item>
                             <v-list-item density="compact">
                                 <v-list-item-subtitle class="text-caption">Date</v-list-item-subtitle>
@@ -63,7 +63,7 @@
                         <v-card-actions>
                             <v-btn @click="() => {
                                 profile.user.tier == 'not verified' ? $router.push('/dashboard/profile') : setCurrnetJob(jobs)
-                            }" class="bg-indigo-lighten-5 text-body-2 text-indigo-accent-4" block>View
+                            }" class="bg-indigo-lighten-5 text-body-2 text-indigo-accent-4" rounded="xl" block>View
                                 Description</v-btn>
                         </v-card-actions>
                     </v-card>
@@ -81,7 +81,7 @@
     </v-sheet>
 
     <v-dialog v-model="currentJob.dialog" width="1000" scrollable :fullscreen="fullscreen">
-        <v-card>
+        <v-card rounded="xl">
             <v-toolbar density="compact" color="transparent">
                 <v-spacer />
                 <v-btn @click="currentJob.dialog = false" icon size="small">
@@ -97,8 +97,8 @@
                                     <v-img
                                         :src="currentJob?.photo != null ? currentJob?.photo : 'https://res.cloudinary.com/rukkiecodes/image/upload/v1678145143/takeOff_p3xuej.svg'"
                                         cover />
-                                    <v-dialog v-model="photoDialog" activator="parent" width="700">
-                                        <v-card>
+                                    <v-dialog v-model="photoDialog" activator="parent" width="600">
+                                        <v-card rounded="xl">
                                             <v-toolbar floating density="compact" color="transparent">
                                                 <v-spacer />
                                                 <v-btn color="grey-darken-3" @click="photoDialog = false" icon size="small">
@@ -138,8 +138,8 @@
                                 <v-list-item density="compact">
                                     <v-list-item-subtitle class="text-caption">Location</v-list-item-subtitle>
                                     <v-list-item-title class="text-grey-darken-4 text-body-2 font-weight-bold">{{
-                                        currentJob?.location
-                                    }}</v-list-item-title>
+                                        currentJob?.location.lga
+                                    }}, {{ currentJob?.location.state }}</v-list-item-title>
                                 </v-list-item>
                                 <v-list-item density="compact">
                                     <v-list-item-subtitle class="text-caption">Date</v-list-item-subtitle>
@@ -166,7 +166,6 @@
                             }}</v-card-text>
                         </v-card>
                     </v-col>
-                    <v-divider vertical />
                     <v-col cols="12" md="4">
                         <CurrentUserVue :user="currentJob" />
                     </v-col>

@@ -125,8 +125,8 @@
           </v-list-item>
           <v-list-item density="compact">
             <v-list-item-subtitle class="text-caption">Location</v-list-item-subtitle>
-            <v-list-item-title class="text-grey-darken-4 text-body-2 font-weight-bold">{{ activeDialog?.location
-            }}</v-list-item-title>
+            <v-list-item-title class="text-grey-darken-4 text-body-2 font-weight-bold">{{ activeDialog?.location.lga
+            }}, {{ activeDialog?.location.lga }}</v-list-item-title>
           </v-list-item>
           <v-list-item density="compact">
             <v-list-item-subtitle class="text-caption">Date</v-list-item-subtitle>
