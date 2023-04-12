@@ -8,7 +8,7 @@
     <v-container class="mainSection d-flex justify-space-between">
       <v-card width="400" max-width="100%" flat color="transparent">
         <p class="text-h4 font-weight-bold text-grey-darken-4">
-          Sign up and become an artizan
+          Sign up and become an artisans
         </p>
         <span class="text-body-1 font-weight-regular text-grey-darken-4">
           If you already have an account You can
@@ -20,18 +20,26 @@
           <v-form>
             <v-text-field v-model="signup.name" label="Name" variant="plain" density="comfortable"
               prepend-inner-icon="mdi-account-outline" />
+
             <v-text-field v-model="signup.email" label="Email" type="email" variant="plain" density="comfortable"
               prepend-inner-icon="mdi-at" />
+
             <v-text-field v-model="signup.phone" label="Phone" variant="plain" density="comfortable"
               prepend-inner-icon="mdi-phone" />
+
             <v-select v-model="signup.gender" :items="['Male', 'Female']" label="Gender" variant="plain"
               density="comfortable" prepend-inner-icon="mdi-gender-male-female" />
-            <v-text-field v-model="signup.stateOfResidence" label="State Of Residence" variant="plain"
+
+            <v-autocomplete @update:model-value="e => currentState(e)" :items="app.location" item-title="state"
+              item-value="state" v-model="signup.stateOfResidence" label="State Of Residence" variant="plain"
               density="comfortable" prepend-inner-icon="mdi-map-marker-outline" />
-            <v-autocomplete v-model="signup.LGA" :items="app.location" label="Location" variant="plain" density="comfortable"
+
+            <v-autocomplete v-model="signup.LGA" :items="lga" label="Location" variant="plain" density="comfortable"
               prepend-inner-icon="mdi-map-marker-outline" />
+
             <v-autocomplete v-model="signup.specialisation" :items="app.categories" label="Area of specialisation"
               variant="plain" density="comfortable" prepend-inner-icon="mdi-account-hard-hat-outline" />
+
             <v-text-field v-model="signup.password" label="Password" type="password" variant="plain" density="comfortable"
               prepend-inner-icon="mdi-lock-outline" />
 
@@ -52,6 +60,13 @@ import { useAppStore } from "@/store/app";
 
 const signup = ref(useSignupStore());
 const app = ref(useAppStore())
+let lga = ref([])
+
+const currentState = e => {
+  let currnetLga = app.value.location.filter(obj => obj.state === e)
+  let object = { ...currnetLga }
+  lga = object[0].lgas
+}
 </script>
 
 <style scoped>
