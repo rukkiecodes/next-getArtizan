@@ -1,5 +1,5 @@
 {
-  "name": "getArtizan",
+  "name": "getArtisan",
   "version": "0.0.0",
   "scripts": {
     "dev": "vite",
