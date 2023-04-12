@@ -24,7 +24,7 @@ export const useIDStore = defineStore('id', {
         async verifyOTP() {
             this.loading = true
 
-            await axios.post(process.env.NODE_ENV == 'production' ? 'https://feed.edu-portal.live/auth/verifyOTP' : '/api/auth/verifyOTP', {
+            await axios.post(process.env.NODE_ENV == 'production' ? 'https://web-production-563e.up.railway.app/auth/verifyOTP' : '/api/auth/verifyOTP', {
                 email: profile.user?.email,
                 otp: this.otp
             })
@@ -42,7 +42,7 @@ export const useIDStore = defineStore('id', {
         async resendOTP() {
             this.loading = true
 
-            await axios.post(process.env.NODE_ENV == 'production' ? 'https://feed.edu-portal.live/auth/resendVerification' : '/api/auth/resendVerification', {
+            await axios.post(process.env.NODE_ENV == 'production' ? 'https://web-production-563e.up.railway.app/auth/resendVerification' : '/api/auth/resendVerification', {
                 email: profile.user?.email
             })
 

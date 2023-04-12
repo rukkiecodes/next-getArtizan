@@ -91,7 +91,7 @@ export const useSigninStore = defineStore('signin', {
             signin()
           }
           else {
-            await axios.post(process.env.NODE_ENV == 'production' ? 'https://feed.edu-portal.live/auth/signin' : '/api/auth/signin', {
+            await axios.post(process.env.NODE_ENV == 'production' ? 'https://web-production-563e.up.railway.app/auth/signin' : '/api/auth/signin', {
               email: this.email,
               password: this.password
             }).then((res) => {
